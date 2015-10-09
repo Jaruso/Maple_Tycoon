@@ -7,12 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import static com.example.joe.mapletycoon.R.*;
 
 public class MainActivity extends AppCompatActivity {
 
     public String mUsername = "";
+    public int currentYear = 1800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         if (nameText.getText() != null) {
             mUsername = nameText.getText().toString();
         }
+
+        TextView maintitle = (TextView) findViewById(id.mainTitle);
+        maintitle.setText(mUsername + ", " + currentYear);
+
 
     }
 

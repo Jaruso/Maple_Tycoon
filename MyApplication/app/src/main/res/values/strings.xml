@@ -2,5 +2,10 @@
     <string name="app_name">MapleTycoon</string>
 
     <string name="hello_world">Hello world!</string>
+
+    <string name="start">Begin Sugarin'!</string>
+    <string name="title">Maple Tycoon 2015</string>
+    <string name="askName">What is you Sugarhouse's name?</string>
+
     <string name="action_settings">Settings</string>
 </resources>

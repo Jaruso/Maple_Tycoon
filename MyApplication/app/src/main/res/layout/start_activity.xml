@@ -51,7 +51,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/editName"
         android:gravity="center_vertical|center_horizontal"
-        android:onClick="setName"
         android:layout_marginTop="80dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp" />

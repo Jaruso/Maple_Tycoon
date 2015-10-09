@@ -12,14 +12,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/mainTitle"
         android:layout_alignParentTop="true"
-<<<<<<< HEAD
         android:layout_centerHorizontal="true" />
 
 
-
-=======
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="133dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,5 +25,5 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="storeButtonOnClick" />
->>>>>>> origin/master
+
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -25,15 +26,19 @@ public class MainActivity extends AppCompatActivity {
         Button startBtn = (Button) findViewById(id.start);
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                setName();
-                setContentView(R.layout.activity_main);
-
-                Button storeBtn = (Button) findViewById(id.storeButton);
-                storeBtn.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View view) {
-                        setContentView(R.layout.activity_store);
-                    }
-                });
+                if(checkName()) {
+                    setContentView(R.layout.activity_main);
+                    setTitle();
+                    Button storeBtn = (Button) findViewById(id.storeButton);
+                    storeBtn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            setContentView(R.layout.activity_store);
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -61,16 +66,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setName ()
-    {
+    public boolean checkName(){
+
         EditText nameText = (EditText) findViewById(id.editName);
-        if (nameText.getText() != null) {
-            mUsername = nameText.getText().toString();
+        if (nameText.getText().length() != 0) {
+            setName(nameText.getText().toString());
+            return true;
         }
+        else
+            return false;
+    }
+
+
+    public void setName (String username)
+    {
+            mUsername = username;
+    }
+
+    public void setTitle (){
 
         TextView maintitle = (TextView) findViewById(id.mainTitle);
         maintitle.setText(mUsername + ", " + currentYear);
-
 
     }
 

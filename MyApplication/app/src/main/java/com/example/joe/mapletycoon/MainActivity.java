@@ -4,13 +4,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    public String mUsername = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.start_activity);
+
+        Button startBtn = (Button) findViewById(R.id.start);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                setName();
+            }
+        });
+
     }
 
     @Override
@@ -34,4 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void setName ()
+    {
+        EditText nameText = (EditText) findViewById(R.id.editName);
+        if (nameText.getText() != null) {
+            mUsername = nameText.getText().toString();
+        }
+    }
+
+
 }

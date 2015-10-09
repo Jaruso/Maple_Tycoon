@@ -15,7 +15,7 @@
         android:typeface="monospace"
         android:id="@+id/title"
         android:layout_gravity="center_horizontal"
-        android:height="40dp"
+        android:height="90dp"
         android:gravity="center|bottom" />
 
     <TextView
@@ -25,6 +25,7 @@
         android:id="@+id/askName"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/title"
+        android:typeface="monospace"
         android:textSize="18dp"
         android:gravity="center_vertical|center_horizontal|bottom"
         android:layout_marginTop="80dp" />
@@ -36,6 +37,7 @@
         android:hint="Your Name"
         android:layout_gravity="center_horizontal"
         android:inputType="textCapSentences"
+        android:typeface="monospace"
         android:layout_below="@id/askName"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal" />
@@ -44,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/start"
+        android:typeface="monospace"
         android:id="@+id/start"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/editName"

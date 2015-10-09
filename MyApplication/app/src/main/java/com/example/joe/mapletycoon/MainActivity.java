@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import static com.example.joe.mapletycoon.R.*;
+
 public class MainActivity extends AppCompatActivity {
 
     public String mUsername = "";
@@ -15,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_activity);
+        setContentView(layout.start_activity);
 
-        Button startBtn = (Button) findViewById(R.id.start);
+        Button startBtn = (Button) findViewById(id.start);
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 setName();
@@ -50,11 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void setName ()
     {
-        EditText nameText = (EditText) findViewById(R.id.editName);
+        EditText nameText = (EditText) findViewById(id.editName);
         if (nameText.getText() != null) {
             mUsername = nameText.getText().toString();
         }
     }
+
+
+
+
+
 
 
 }

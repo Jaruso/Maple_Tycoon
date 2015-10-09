@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true">
+    android:clickable="true"
+    tools:context=".MainActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/title"
-        android:typeface="@string/mfont"
+        android:typeface="monospace"
         android:id="@+id/title"
         android:layout_gravity="center_horizontal"
         android:height="40dp"
@@ -20,7 +23,6 @@
         android:layout_height="wrap_content"
         android:text="@string/askName"
         android:id="@+id/askName"
-        android:typeface="@string/mfont"
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/title"
         android:textSize="18dp"
@@ -31,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editName"
-        android:typeface="@string/mfont"
         android:hint="Your Name"
         android:layout_gravity="center_horizontal"
         android:inputType="textCapSentences"
@@ -42,7 +43,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:typeface="@string/mfont"
         android:text="@string/start"
         android:id="@+id/start"
         android:layout_gravity="center_horizontal"

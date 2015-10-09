@@ -3,9 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
 
-    <string name="start">Begin Sugarin'!</string>
+    <string name="start">Begin Sugarin!</string>
     <string name="title">Maple Tycoon 2015</string>
-    <string name="askName">What is your Sugarhouse's name?</string>
+    <string name="askName">What is your Sugarhouse name?</string>
     <string name="mfont">monospace</string>
 
     <string name="action_settings">Settings</string>

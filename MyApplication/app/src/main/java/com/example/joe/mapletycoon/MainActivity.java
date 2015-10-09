@@ -1,5 +1,6 @@
 package com.example.joe.mapletycoon;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 setName();
                 setContentView(R.layout.activity_main);
+
+                Button storeBtn = (Button) findViewById(id.storeButton);
+                storeBtn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        setContentView(R.layout.activity_store);
+                    }
+                });
             }
         });
 
@@ -65,11 +73,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
 
 }

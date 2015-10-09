@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 setName();
+                setContentView(R.layout.activity_main);
             }
         });
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         if (nameText.getText() != null) {
             mUsername = nameText.getText().toString();
         }
+
     }
 
 

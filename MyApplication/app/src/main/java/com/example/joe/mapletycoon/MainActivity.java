@@ -98,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateResources ()
     {
-        int mMoney = mStore.getMoney();
+        float mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Integer.toString(mMoney) );
+        money.setText(Float.toString(mMoney) );
 
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
@@ -269,9 +269,9 @@ public class MainActivity extends AppCompatActivity {
         float totalSap=sapPerTree*treePerHouse*1;
         float totalSyrup=totalSap/35;
         float totalMoney=totalSyrup*30;
-       for(StoreItem item: mStore.getAvailabelItems()){
-           effect e=item.getEffect();
-           switch(e) {
+       for(StoreItem item: mStore.getAvailabelItems()) {
+           effect e = item.getEffect();
+           switch (e) {
                case sap:
                    totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
                    totalSyrup = totalSap / 35;
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
                    break;
            }
-
+       }
 
            LayoutInflater inflator=getLayoutInflater();
            View view=inflator.inflate(layout.summary_activity, null, false);
@@ -299,9 +299,10 @@ public class MainActivity extends AppCompatActivity {
 
            createSummary(totalMoney, totalSap, totalSyrup);
 
+        mStore.addMoney(totalMoney);
+        currentYear += 1;
 
 
-           }
        }
 
 

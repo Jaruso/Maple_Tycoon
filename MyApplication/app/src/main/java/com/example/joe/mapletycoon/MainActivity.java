@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     public String mUsername = "";
     public int currentYear = 1800;
 
+    Store userStore = new Store();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     storeBtn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View view) {
                             setContentView(R.layout.activity_store);
+                            updateResources();
                         }
                     });
                 }
@@ -87,6 +90,19 @@ public class MainActivity extends AppCompatActivity {
 
         TextView maintitle = (TextView) findViewById(id.mainTitle);
         maintitle.setText(mUsername + ", " + currentYear);
+
+    }
+
+    public void updateResources ()
+    {
+        TextView money = (TextView) findViewById(id.moneynum);
+        money.setText(userStore.getMoney().ToString());
+
+       // TextView worker = (TextView) findViewById(id.workernum);
+       /// worker.setText(mUsername + ", " + currentYear);
+
+       // TextView house = (TextView) findViewById(id.housenum);
+       // house.setText(mUsername + ", " + currentYear);
 
     }
 

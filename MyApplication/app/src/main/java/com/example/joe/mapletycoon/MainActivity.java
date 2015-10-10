@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
         Random rand = new Random();
 
-        int randomNum = rand.nextInt((28 - 0) + 1) + 0;
+        int randomNum = rand.nextInt(28 + 1);
 
         Resources res = getResources();
         String[] facts = res.getStringArray(R.array.fact_array);
@@ -267,17 +267,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView totalSapText = (TextView) findViewById(id.totalsap);
-        totalSapText.setText("This year you produced " + String.format("%.2f", totalSap) + " gallons of sap.");
+        totalSapText.setText("\tThis year you produced " + String.format("%.2f", totalSap) + " gallons of sap.");
 
 
         TextView totalGalText = (TextView) findViewById(id.totalsyrup);
-        totalGalText.setText("All that sap boiled down to " + String.format("%.2f", totalSyrup) + " gallons of syrup.");
+        totalGalText.setText("\tAll that sap boiled down to " + String.format("%.2f", totalSyrup) + " gallons of syrup.");
 
         TextView Upkeep = (TextView) findViewById(id.totalUpkeep);
-        Upkeep.setText("The cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
+        Upkeep.setText("\tThe cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("After expenses, you earned $" + String.format("%.2f", (totalMoney - totalUpkeep)) + " from maple syrup this year.");
+        totalText.setText("\tAfter expenses, you earned $" + String.format("%.2f", (totalMoney - totalUpkeep)) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
@@ -296,9 +296,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void runSimulation() {
         //  climateScores.get(currentYear);
-        float sapPerTree = 0.3f;
-        int treePerHouse = 500;
-        float totalSap = sapPerTree * treePerHouse * 1;
+
+        float sapPerTree = 10;
+        int treePerHouse = 100;
+        float totalSap = ((sapPerTree * treePerHouse) / 5)*mStore.getHouses();
         float totalSyrup = totalSap / 35;
         float totalMoney = totalSyrup * 30;
         float totalUpkeep = 0;

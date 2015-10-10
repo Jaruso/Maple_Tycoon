@@ -29,24 +29,24 @@ public class Store {
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
-        _availableItems.add(1, new StoreItem(1500, "Sugar House", -1, R.string.sugarHouseDescription, MainActivity.effect.sap, .0f,150,0.0f));
+        _availableItems.add(1, new StoreItem(1500, "Sugar House", -1, R.string.sugarHouseDescription, MainActivity.effect.sap, .0f,25,0.0f));
         _availableItems.get(1).buy();
         _availableItems.add(2, new StoreItem(400, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, .1f,0,0.0f));
-        _availableItems.add(3, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, .5f,150,0.0f));
+        _availableItems.add(3, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, .5f,25,0.0f));
         _availableItems.add(4, new StoreItem(400, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, .5f,100,0.0f));
         _availableItems.add(5, new StoreItem(500, "Oil Furnace", 10, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 1.00f,175,2.0f));
 
         // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
       //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
-        _futureItems.put(1940, new StoreItem(10000,"Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap,1.5f,0,1.0f));
-        _futureItems.put(1980, new StoreItem(10000,"Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap,1.0f,0,1.5f));
-        _futureItems.put(1980, new StoreItem(10000,"Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap,.5f,0,1.0f));
-        _futureItems.put(1930, new StoreItem(10000,"Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap,.75f,0,1.75f));
-        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,1.0f,0,0.0f));
-        _futureItems.put(1970, new StoreItem(15000,"Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,.75f,0,0.0f));
-        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,.75f,0,-1.0f));
-        _futureItems.put(1990, new StoreItem(10000,"Super Charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,1.0f,0,-2.0f));
+        _futureItems.put(1940, new StoreItem(10000,"Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap,1.5f,100,1.0f));
+        _futureItems.put(1980, new StoreItem(10000,"Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap,1.0f,100,1.5f));
+        _futureItems.put(1980, new StoreItem(10000,"Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap,.5f,50,1.0f));
+        _futureItems.put(1930, new StoreItem(10000,"Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap,.75f,50,1.75f));
+        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,1.0f,25,0.0f));
+        _futureItems.put(1970, new StoreItem(15000,"Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,.75f,25,0.0f));
+        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,.75f,75,-1.0f));
+        _futureItems.put(1990, new StoreItem(10000,"Super Charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,1.0f,25,-2.0f));
 
 
 
@@ -60,17 +60,12 @@ public class Store {
         _money += moneyMade;
         ArrayList<StoreItem> newItems = new ArrayList<StoreItem>();
 
-        Iterator it = _futureItems.entrySet().iterator();
-        while(it.hasNext())
-        {
-            Map.Entry pair = (Map.Entry)it.next();
-            if((Integer)pair.getKey() > year)
-            {
+        for (Map.Entry<Integer, StoreItem> entry : _futureItems.entrySet()) {
                 //move it to the availableItems list
-                _availableItems.add((StoreItem)pair.getValue());
-                newItems.add((StoreItem)pair.getValue());
-                _futureItems.remove((Integer)pair.getKey());
-            }
+                if(entry.getKey() > year) {
+                    _availableItems.add((StoreItem) entry.getValue());
+                    newItems.add((StoreItem) entry.getValue());
+                }
         }
 
         return newItems;

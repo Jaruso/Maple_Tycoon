@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public Store mStore = new Store(this);
     public ShopItemClickListener shopClickListener = new ShopItemClickListener(new WeakReference<Store>(mStore), this);
     public HashMap<Integer, Integer> climateScores;
+    public float climateLosses = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,13 +301,14 @@ public class MainActivity extends AppCompatActivity {
 
         createSummary(totalMoney, totalSap, totalSyrup, totalUpkeep);
         totalMoney = totalMoney - totalUpkeep;
-        mStore.addMoney(totalMoney);
         if(currentYear < 1970)
             currentYear += 10;
         else if(currentYear < 2000)
             currentYear += 5;
         else
             currentYear +=1;
+
+        mStore.updateYear(currentYear, totalMoney);
         totalCarbon += carbonMade;
         gameEnd();
 

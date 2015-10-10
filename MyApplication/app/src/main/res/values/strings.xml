@@ -18,7 +18,7 @@
     <string name="title_activity_store">StoreActivity</string>
 
     <string-array name="fact_array">
-        <item>It takes 30\-50 gallons of sap to make one gallon of maple syrup</item>
+        <item>It takes 30 to 50 gallons of sap to make one gallon of maple syrup</item>
         <item>It takes one gallon of maple syrup to produce eight pounds of maple candy or sugar</item>
         <item>A gallon of maple syrup weighs 11 pounds</item>
         <item>The sugar content of sap averages 2.5 percent; sugar content of maple syrup is at least 66 percent or more</item>

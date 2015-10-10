@@ -12,7 +12,7 @@ public class Store {
 
     private ArrayList<StoreItem> _availableItems;
     private HashMap<Integer, StoreItem> _futureItems; //maps items to the years they unlock
-    private int _money = 10000; //the amount of money that the user has
+    private float _money = 5000.0f; //the amount of money that the user has
 
     public Store()
     {
@@ -73,7 +73,7 @@ public class Store {
         return false;
     }
 
-    public int getMoney()
+    public float getMoney()
     {
         return _money;
     }
@@ -94,4 +94,6 @@ public class Store {
     }
 
     public int getFurnaces() { return _availableItems.get(3).getAmount();}
+
+    public void addMoney(float profit) { _money += profit;}
 }

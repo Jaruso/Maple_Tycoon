@@ -120,6 +120,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="storeClick"
+        android:background="@drawable/buttonstyle"
+        android:textColor="#FFFFFF"
         />
 
 <<<<<<< Updated upstream

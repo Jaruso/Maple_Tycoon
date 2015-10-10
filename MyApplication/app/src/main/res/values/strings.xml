@@ -9,6 +9,11 @@
     <string name="askName">What is your Sugarhouse name?</string>
     <string name="mfont">monospace</string>
 
+    <string name="workerDescription">Workers harvest sap and refine it into syrup. They are paid $100 every season and get an additional $100 sign-on bonus.</string>
+    <string name="vatDescription">Vats are used in refining sap to syrup. They increase the efficiency of the conversion process.</string>
+    <string name="carriageDescription">Carriages make it easier to harvest sap. Each carriage you own increases the amount of sap you wll gather each season</string>
+    <string name="woodFurnanceDescription">The wood furnace is used for refining sap. You will make more syrup from the sap you gather.</string>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_store">StoreActivity</string>
 </resources>

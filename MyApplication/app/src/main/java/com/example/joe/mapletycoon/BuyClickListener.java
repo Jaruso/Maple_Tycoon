@@ -31,7 +31,7 @@ public class BuyClickListener implements View.OnClickListener {
 
         View moneyField = mParent.findViewById(R.id.moneyAmount);
         TextView money = (TextView) moneyField;
-        money.setText(Float.toString(mStore.get().getMoney()));
+        money.setText(Integer.toString(mStore.get().getMoney()));
 
         View field = mParent.findViewById(index+400);
         TextView amount = (TextView) field;

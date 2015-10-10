@@ -5,50 +5,51 @@ package com.example.joe.mapletycoon;
  */
 public class StoreItem {
 
-    private float _price; // price of the item in dollars, must always only have 2 digits
-    private String _name;
-    //icon?
-    private int _amountOwned;
-    private int _maxAmount; //-1 for infinite
+    private int mPrice; // price of the item in dollars, must always only have 2 digits
+    private String mName;
+    private int mDescriptionId;
+    private int mAmountOwned;
+    private int mMaxAmount; //-1 for infinite
 
-    public StoreItem(float price, String name, int maxAmount)
+    public StoreItem(int price, String name, int maxAmount, int descriptionId)
     {
-        _price = price;
-        _name = name;
-        _amountOwned = 0;
-        _maxAmount = maxAmount;
+        mPrice = price;
+        mName = name;
+        mAmountOwned = 0;
+        mMaxAmount = maxAmount;
+        mDescriptionId = descriptionId;
     }
 
-    public float getPrice()
+    public int getPrice()
     {
-        return _price;
+        return mPrice;
     }
 
-    public void setPrice(float price)
+    public void setPrice(int price)
     {
-        _price = price;
+        mPrice = price;
     }
 
     public String getName()
     {
-        return _name;
+        return mName;
     }
 
     public int getMaxAmount()
     {
-        return _maxAmount;
+        return mMaxAmount;
     }
 
     //buys one of this item
     public void buy()
     {
-        _amountOwned++;
+        mAmountOwned++;
     }
 
     public boolean sell()
     {
-        if(_amountOwned > 0) {
-            _amountOwned--;
+        if(mAmountOwned > 0) {
+            mAmountOwned--;
             return true;
         }
 
@@ -57,6 +58,6 @@ public class StoreItem {
 
     public int getAmount()
     {
-        return _amountOwned;
+        return mAmountOwned;
     }
 }

@@ -84,15 +84,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateResources ()
     {
-        float mMoney = mStore.getMoney();
+        int mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
 
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Float.toString(mMoney) );
+        money.setText(Integer.toString(mMoney) );
 
         TextView worker = (TextView) findViewById(id.workernum);
-        worker.setText(mWorker);
+        worker.setText(Integer.toString(mWorker));
 
        // TextView house = (TextView) findViewById(id.housenum);
        // house.setText(mUsername + ", " + currentYear);
@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
         generateStoreControls();
     }
     public void storeExitClick(View view) {
-        updateResources();
         setContentView(R.layout.activity_main);
+        updateResources();
     }
 
 }

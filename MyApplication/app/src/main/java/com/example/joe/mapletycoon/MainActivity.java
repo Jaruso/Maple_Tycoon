@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
                     storeBtn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View view) {
                             setContentView(R.layout.activity_store);
-                            updateResources();
                             ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
                             generateStoreControls();
+                            updateResources();
                         }
                     });
                 } else {

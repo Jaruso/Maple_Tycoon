@@ -1,5 +1,8 @@
 package com.example.joe.mapletycoon;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,16 +16,32 @@ public class Store {
     private ArrayList<StoreItem> _availableItems;
     private HashMap<Integer, StoreItem> _futureItems; //maps items to the years they unlock
     private float _money = 2000.0f; //the amount of money that the user has
-
-    public Store()
+    private Context mParent;
+    public Store(Context parent)
     {
+        mParent = parent;
         //initialize availableItems
         _availableItems = new ArrayList<StoreItem>();
+<<<<<<< HEAD
         _availableItems.add(0, new StoreItem(50, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, 1.5f,150,0.0f));
         _availableItems.add(1, new StoreItem(400, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, 1.1f,0,0.0f));
         _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, 1.5f,150,0.0f));
         _availableItems.add(3, new StoreItem(400, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, 1.3f,100,0.0f));
         _availableItems.add(4, new StoreItem(800, "Oil Furnace", 5, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 1.80f,175,2.0f));
+=======
+        _availableItems.add(0, new StoreItem(50, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, .5f,150,0.0f));
+        _availableItems.get(0).buy();
+        _availableItems.get(0).buy();
+        _availableItems.get(0).buy();
+        _availableItems.get(0).buy();
+        _availableItems.get(0).buy();
+        _availableItems.add(1, new StoreItem(50, "Sugar House", -1, R.string.sugarHouseDescription, MainActivity.effect.sap, .0f,150,0.0f));
+        _availableItems.get(1).buy();
+        _availableItems.add(2, new StoreItem(400, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, .1f,0,0.0f));
+        _availableItems.add(3, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, .5f,150,0.0f));
+        _availableItems.add(4, new StoreItem(400, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, .5f,100,0.0f));
+        _availableItems.add(5, new StoreItem(500, "Oil Furnace", 10, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 1.00f,175,2.0f));
+>>>>>>> origin/master
 
         // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
@@ -69,6 +88,23 @@ public class Store {
     public boolean BuyItem(int index)
     {
         if(_money >= _availableItems.get(index).getPrice()) {
+            if(index == 1) // they are trying to buy a sugar house
+            {
+                if(_availableItems.get(0).getAmount()/5 <= _availableItems.get(index).getAmount())
+                {
+                    Toast.makeText(mParent, "You need more workers to construct a sugar house (5 workers per house)", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
+
+            if(index == 2 || index == 4 || index == 5 ||index == 7 || index == 8 || index == 9 )
+            {
+                if(_availableItems.get(index).getAmount() >= _availableItems.get(1).getAmount()*2)
+                {
+                    Toast.makeText(mParent, "You need need another sugar house to build more of this type of equipment", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }
             _money -= _availableItems.get(index).getPrice();
             _availableItems.get(index).buy();
             return true;

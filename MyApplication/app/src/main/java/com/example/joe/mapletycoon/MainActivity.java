@@ -39,33 +39,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(layout.start_activity);
 
 
-        Button startBtn = (Button) findViewById(id.start);
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if(checkName()) {
-                    setContentView(R.layout.activity_main);
-                    setTitle();
-
-                    Button storeBtn = (Button) findViewById(id.storeButton);
-                    storeBtn.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            setContentView(R.layout.activity_store);
-                        }
-                    });
-
-
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-
     }
 
-   // @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -189,14 +165,10 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
         generateStoreControls();
     }
-<<<<<<< HEAD
 
-    public void storeExitClick(View view)
-    {
-        updateResources();
-=======
+
+
     public void storeExitClick(View view) {
->>>>>>> origin/master
         setContentView(R.layout.activity_main);
         updateResources();
     }

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String mUsername = "";
     public float totalCarbon = 0.0f;
-    public int currentYear = 1800;
+    public int currentYear = 1900;
     public Store mStore = new Store(this);
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
     public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
         Upkeep.setText("The cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("After expenses, you earned $" + String.format("%.2f", (totalMoney-totalUpkeep)) + " from maple syrup this year.");
+        totalText.setText("After expenses, you earned $" + String.format("%.2f", (totalMoney - totalUpkeep)) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
@@ -325,6 +325,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if(currentYear < 1970){
+            totalSap *= 10;
+            totalSyrup *= 10;
+            totalMoney *= 10;
+            totalUpkeep *= 10;
+        }
+        else if(currentYear < 2000) {
+            totalSap *= 5;
+            totalSyrup *= 5;
+            totalMoney *= 5;
+            totalUpkeep *= 5;
+        }
         LayoutInflater inflator = getLayoutInflater();
         View view = inflator.inflate(layout.summary_activity, null, false);
         view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
@@ -336,7 +348,12 @@ public class MainActivity extends AppCompatActivity {
         createSummary(totalMoney, totalSap, totalSyrup, totalUpkeep);
         totalMoney = totalMoney - totalUpkeep;
         mStore.addMoney(totalMoney);
-        currentYear += 1;
+        if(currentYear < 1970)
+            currentYear += 10;
+        else if(currentYear < 2000)
+            currentYear += 5;
+        else
+            currentYear +=1;
         totalCarbon += carbonMade;
         gameEnd();
 

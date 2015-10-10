@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -225,7 +226,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void onAnimationEnd(Animation a) {
-                runSimulation();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        runSimulation();
+                    }
+                }, 200);
             }
 
         });

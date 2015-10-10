@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
     public void storeExitClick(View view) {
         setContentView(R.layout.activity_main);
         updateResources();
+        setTitle();
     }
 
     public void TreeClick(View view) {

@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     {
         float mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
+        int mFurnace = mStore.getFurnaces();
 
         TextView money = (TextView) findViewById(id.moneynum);
         money.setText(Float.toString(mMoney) );
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
 
-       // TextView house = (TextView) findViewById(id.housenum);
-       // house.setText(mUsername + ", " + currentYear);
+        TextView furnace = (TextView) findViewById(id.furnacenum);
+        furnace.setText(Integer.toString(mFurnace));
 
     }
 
@@ -249,22 +250,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView totalSapText = (TextView) findViewById(id.totalsap);
-        totalSapText.setText("This year you produced " + Float.toString(totalSap) + " gallons of sap.");
-
-        TextView avgGalText = (TextView) findViewById(id.totalsap);
-        avgGalText.setText(Float.toString(totalSap));
+        totalSapText.setText("\tThis year you produced " + Float.toString(totalSap) + " gallons of sap.");
 
         TextView totalGalText = (TextView) findViewById(id.totalsyrup);
-        totalGalText.setText("All that sap boiled down to " + Float.toString(totalSyrup) + "gallons of syrup.");
+        totalGalText.setText("\tAll that sap boiled down to " + Float.toString(totalSyrup) + "gallons of syrup.");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("After expenses, you earned $" + Float.toString(totalMoney) + " from maple syrup this year.");
+        totalText.setText("\tAfter expenses, you earned $" + Float.toString(totalMoney) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
 
         TextView factText = (TextView) findViewById(id.syrupfact);
-        factText.setText("      Random Maple Syrup Fact ! \n\n \t" + fact);
+        factText.setText("\t\t\tRandom Maple Syrup Fact ! \n\n \t" + fact);
 
     }
 

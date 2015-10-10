@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -37,8 +38,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
+<<<<<<< Updated upstream
 
 
+=======
+        Button startBtn = (Button) findViewById(id.start);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (checkName()) {
+                    setContentView(R.layout.activity_main);
+                    setTitle();
+
+                    TextView test = (TextView) findViewById(id.climateScoreTest);
+                    int val = 420;
+                    try {
+                        WeatherMan w = new WeatherMan();
+                        val = w.execute(1907).get();
+                        test.setText(String.valueOf(val));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Button storeBtn = (Button) findViewById(id.storeButton);
+                    storeBtn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            setContentView(R.layout.activity_store);
+                            ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+                            generateStoreControls();
+                            updateResources();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+>>>>>>> Stashed changes
     }
 
     @Override

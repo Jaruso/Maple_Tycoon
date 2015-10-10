@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             buy.setOnClickListener(buyClickListener);
             buy.setBackgroundResource(drawable.buttonstyle);
             buy.setTextSize(12);
+            buy.setWidth(35);
             buy.setTextColor(Color.parseColor("#FFFFFF"));
             layout.addView(buy);
 
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             sell.setOnClickListener(sellClickListener);
             sell.setBackgroundResource(drawable.buttonstyle);
             sell.setTextColor(Color.parseColor("#FFFFFF"));
+            sell.setWidth(35);
             sell.setTextSize(12);
             layout.addView(sell);
 
@@ -160,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             description.setBackgroundResource(drawable.buttonstyle);
             description.setTextColor(Color.parseColor("#FFFFFF"));
             description.setTextSize(12);
+            description.setWidth(35);
             description.setOnClickListener(descClickListener);
             layout.addView(description);
 

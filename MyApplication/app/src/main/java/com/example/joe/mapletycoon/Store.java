@@ -135,11 +135,16 @@ public class Store {
         return _availableItems.get(0).getAmount();
     }
 
+    public int getHouses()
+    {
+        return _availableItems.get(1).getAmount();
+    }
+
     public int getFurnaces() {
         int total = 0;
 
-        total += _availableItems.get(3).getAmount();
         total += _availableItems.get(4).getAmount();
+        total += _availableItems.get(5).getAmount();
 
         total += -_futureItems.get(1980).getAmount();
         total += -_futureItems.get(1930).getAmount();

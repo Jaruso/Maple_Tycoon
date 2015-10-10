@@ -105,12 +105,16 @@ public class MainActivity extends AppCompatActivity {
         float mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
         int mFurnace = mStore.getFurnaces();
+        int mHouse = mStore.getHouses();
 
         TextView money = (TextView) findViewById(id.moneynum);
         money.setText(String.format("$ %.2f", mMoney));
 
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
+
+        TextView house = (TextView) findViewById(id.housenum);
+        house.setText(Integer.toString(mHouse));
 
         TextView furnace = (TextView) findViewById(id.furnacenum);
         furnace.setText(Integer.toString(mFurnace));

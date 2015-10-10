@@ -58,7 +58,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/workernum"
-        android:text="0"
         android:layout_toRightOf="@+id/workerimage"
         android:layout_alignTop="@id/workerimage"
         android:layout_marginLeft="8dp"
@@ -82,7 +81,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/moneynum"
-        android:text="0"
         android:layout_toRightOf="@+id/moneyimage"
         android:layout_marginLeft="8dp"
         android:layout_alignTop="@id/moneyimage"
@@ -105,10 +103,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/furnacenum"
-        android:text="0"
+        android:id="@+id/housenum"
         android:layout_toRightOf="@+id/houseimage"
         android:layout_alignTop="@id/houseimage"
+        android:layout_marginLeft="8dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/furnaceimage"
+        android:src="@drawable/furnace"
+        android:adjustViewBounds="true"
+        android:maxWidth="40dp"
+        android:maxHeight="40dp"
+        android:scaleType="fitCenter"
+        android:layout_alignTop="@id/houseimage"
+        android:layout_toRightOf="@id/housenum"
+        android:layout_marginLeft="40dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/furnacenum"
+        android:layout_toRightOf="@+id/furnaceimage"
+        android:layout_alignTop="@id/furnaceimage"
         android:layout_marginLeft="8dp"
         />
 

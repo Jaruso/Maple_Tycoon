@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         int mFurnace = mStore.getFurnaces();
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Float.toString(mMoney));
+        money.setText(String.format("$ %.2f", mMoney));
 
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             buy.setOnClickListener(buyClickListener);
             buy.setBackgroundResource(drawable.buttonstyle);
             buy.setTextSize(12);
+            buy.setWidth(35);
             buy.setTextColor(Color.parseColor("#FFFFFF"));
             layout.addView(buy);
 
@@ -151,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
             sell.setOnClickListener(sellClickListener);
             sell.setBackgroundResource(drawable.buttonstyle);
             sell.setTextColor(Color.parseColor("#FFFFFF"));
+            sell.setWidth(35);
             sell.setTextSize(12);
             layout.addView(sell);
 
@@ -160,10 +164,11 @@ public class MainActivity extends AppCompatActivity {
             description.setBackgroundResource(drawable.buttonstyle);
             description.setTextColor(Color.parseColor("#FFFFFF"));
             description.setTextSize(12);
+            description.setWidth(35);
             description.setOnClickListener(descClickListener);
             layout.addView(description);
 
-            ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+            ((TextView) findViewById(id.moneyAmount)).setText(String.format("$ %.2f", mStore.getMoney()));
         }
     }
 
@@ -298,20 +303,20 @@ public class MainActivity extends AppCompatActivity {
             effect e = item.getEffect();
             switch (e) {
                 case sap:
-                    totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalSap *= item.getMultiplyer()*item.getAmount()+1;
                     totalSyrup = totalSap / 35;
                     totalMoney = totalSyrup * 30;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
                 case syrup:
-                    totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalSyrup *=item.getMultiplyer()*item.getAmount()+1;
                     totalMoney = totalSyrup * 30;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
                 case emmisions:
                     break;
                 case money:
-                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalMoney *= item.getMultiplyer()*item.getAmount()+1;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
             }
@@ -343,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
             TextView emissions = (TextView) findViewById(id.climate);
             TextView money = (TextView) findViewById(id.earned);
             TextView endTitle=(TextView) findViewById(id.endTitle);
-            endTitle.setText("You have gone backrupt!");
+            endTitle.setText("You have gone bankrupt!");
             emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
             money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
         }

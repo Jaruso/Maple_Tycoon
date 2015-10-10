@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f5ff8a" >
 
 
     <TextView
@@ -16,37 +17,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/totalsap"
         android:layout_below="@+id/summarytitle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/totalsyrup"
         android:layout_below="@+id/totalsap" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
-        android:id="@+id/moneymade"
+        android:layout_marginTop="30dp"
+        android:id="@+id/totalUpkeep"
         android:layout_below="@+id/totalsyrup"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/moneymade"
+        android:layout_below="@+id/totalUpkeep"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:id="@+id/avgtemp"
         android:layout_below="@+id/moneymade"
         />
@@ -54,9 +55,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/syrupfact"
         android:layout_below="@+id/avgtemp"
         />

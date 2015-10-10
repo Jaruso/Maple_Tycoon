@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createSummary(float totalMoney, float totalSap, float totalSyrup){
+    public void createSummary(float totalMoney, float totalSap, float totalSyrup, float totalUpkeep){
 
         float avgTemp = 0.0f;     //
 
@@ -250,13 +250,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView totalSapText = (TextView) findViewById(id.totalsap);
-        totalSapText.setText("\tThis year you produced " + Float.toString(totalSap) + " gallons of sap.");
+        totalSapText.setText("This year you produced " + String.format("%.2f", totalSap) + " gallons of sap.");
+
 
         TextView totalGalText = (TextView) findViewById(id.totalsyrup);
-        totalGalText.setText("\tAll that sap boiled down to " + Float.toString(totalSyrup) + "gallons of syrup.");
+        totalGalText.setText("All that sap boiled down to " + String.format("%.2f", totalSyrup) + " gallons of syrup.");
+
+        TextView Upkeep = (TextView) findViewById(id.totalUpkeep);
+        Upkeep.setText("The cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("\tAfter expenses, you earned $" + Float.toString(totalMoney) + " from maple syrup this year.");
+        totalText.setText("After expenses, you earned $" + String.format("%.2f", totalMoney) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
@@ -280,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
         float totalSap=sapPerTree*treePerHouse*1;
         float totalSyrup=totalSap/35;
         float totalMoney=totalSyrup*30;
+        float totalUpkeep=0;
        for(StoreItem item: mStore.getAvailabelItems()) {
            effect e = item.getEffect();
            switch (e) {
@@ -287,15 +292,18 @@ public class MainActivity extends AppCompatActivity {
                    totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
                    totalSyrup = totalSap / 35;
                    totalMoney = totalSyrup * 30;
+                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
                    break;
                case syrup:
                    totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
                    totalMoney = totalSyrup * 30;
+                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
                    break;
                case emmisions:
                    break;
                case money:
                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
+                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
                    break;
            }
        }
@@ -308,10 +316,8 @@ public class MainActivity extends AppCompatActivity {
            view.setAnimation(myAnim);
            setContentView(view);
 
-           createSummary(totalMoney, totalSap, totalSyrup);
-
-
-
+           createSummary(totalMoney, totalSap, totalSyrup, totalUpkeep);
+        totalMoney=totalMoney-totalUpkeep;
         mStore.addMoney(totalMoney);
         currentYear += 1;
 

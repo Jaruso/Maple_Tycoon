@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
         float totalSyrup=totalSap/35;
         float totalMoney=totalSyrup*30;
         float totalUpkeep=0;
+        float carbonMade = 0.0f;
        for(StoreItem item: mStore.getAvailabelItems()) {
            effect e = item.getEffect();
            switch (e) {
@@ -307,6 +308,7 @@ public class MainActivity extends AppCompatActivity {
                    totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
                    break;
            }
+
        }
 
            LayoutInflater inflator=getLayoutInflater();

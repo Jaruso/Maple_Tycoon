@@ -38,5 +38,22 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/climate"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donate!"
+        android:id="@+id/donateButton"
+        android:layout_marginBottom="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Energize Vermont is an organization that educates and advocates renewable resource use in Vermont - to help keep our state beautiful and sap-producing. If you&apos;d like, you can donate to their cause here"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/donateButton" />
+
 
 </RelativeLayout>

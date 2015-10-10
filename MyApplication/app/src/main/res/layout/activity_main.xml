@@ -182,7 +182,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Tap the Tree to Begin the Season"
         android:id="@+id/textView2"
-        android:layout_above="@+id/tappingtree"
+        android:layout_alignTop="@+id/mainTitle"
         android:layout_centerHorizontal="true" />
 
 

@@ -30,6 +30,7 @@ class Season {
     int year;
     int climateMod;
     int[] dayQuality;
+    Double avgTemp;
     List<SeasonDay> days;
 }
 
@@ -44,7 +45,7 @@ public class WeatherMan {
     }
     // http://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&datatypeid=TMIN&stationid=GHCND:USC00435733&startdate=1888-02-01&enddate=1888-04-20&limit=200
 
-    public int computeScore(int year) throws XmlPullParserException, IOException {
+    public Season computeScore(int year) throws XmlPullParserException, IOException {
         int score = 0;
 
         if(_tempMap == null)
@@ -65,7 +66,7 @@ public class WeatherMan {
         if(curSeason == null)
         {
             System.out.println("Nothing in map");
-            return -1;
+            return null;
         }
         for(SeasonDay d : curSeason.days)
         {
@@ -93,11 +94,25 @@ public class WeatherMan {
         dq[1] = fday;
         dq[2] = gday;
 
+        curSeason.avgTemp = calculateAvgTemp(curSeason.days);
         curSeason.dayQuality = dq;
         score = crunchDays(dq);
         curSeason.climateMod = score;
 
-        return score;
+        return curSeason;
+    }
+
+    public Double calculateAvgTemp(List<SeasonDay> days)
+    {
+        double avgTemp = 0;
+        int count = 0;
+        for(SeasonDay d : days)
+        {
+            avgTemp += (d.tmax + d.tmin)/2;
+            count++;
+        }
+        avgTemp = avgTemp/count;
+        return avgTemp;
     }
 
     public Map<Integer, Season> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException
@@ -146,8 +161,8 @@ public class WeatherMan {
 
         SeasonDay toRet = new SeasonDay();
         toRet.date = date;
-        toRet.tmax = tmax;
-        toRet.tmin = tmin;
+        toRet.tmax = tmax/10;
+        toRet.tmin = tmin/10;
 
         return toRet;
     }
@@ -169,8 +184,6 @@ public class WeatherMan {
 
         double max = day[0];
         double min = day[1];
-        max = max/10;
-        min = min/10;
 
         if(max > 2 && min < -1)
         {

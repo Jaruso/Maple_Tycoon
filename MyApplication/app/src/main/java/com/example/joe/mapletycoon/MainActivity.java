@@ -310,6 +310,8 @@ public class MainActivity extends AppCompatActivity {
 
            createSummary(totalMoney, totalSap, totalSyrup);
 
+
+
         mStore.addMoney(totalMoney);
         currentYear += 1;
 

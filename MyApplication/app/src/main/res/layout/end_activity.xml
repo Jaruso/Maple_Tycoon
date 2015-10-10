@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="You have reached the current year !"
+        android:id="@+id/endTitle"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/endDescription"
+        android:id="@+id/endDescription"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/endTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have added x pounds of carbon to the atmosphere."
+        android:id="@+id/climate"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/endDescription"/>
+
+
+</RelativeLayout>

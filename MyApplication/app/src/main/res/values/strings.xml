@@ -56,6 +56,8 @@
         <item>Some sugarmakers still use buckets, but new, plastic tubing has allowed sugarmakers to tap trees that were once difficult to visit each day to gather sap during the season.</item>
         <item>A new tap hole must be made each year.</item>
         <item>If a sap run is long, a sugarmaker will work through the night and until morning making maple syrup. It’s not unusual for the sap to run 3 days or longer.</item>
-    \</string-array>
+    </string-array>
+
+    <string name="endDescription" >Your progress and actions while a maple syrup producer have made changes on the environment.</string>
 
 </resources>

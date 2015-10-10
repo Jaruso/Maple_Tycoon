@@ -1,142 +1,159 @@
 package com.example.joe.mapletycoon;
 
-import android.os.AsyncTask;
-import android.util.JsonWriter;
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by user on 10/9/2015.
  */
+class SeasonDay {
+    String date;
+    Double tmax;
+    Double tmin;
+}
 
-public class WeatherMan extends AsyncTask<Integer, Void, Integer> {
+class Season {
+    int year;
+    int climateMod;
+    int[] dayQuality;
+    List<SeasonDay> days;
+}
 
-    private String _endpoint = "http://www.ncdc.noaa.gov/cdo-web/api/v2/";
-    private String _dataSetId = "GHCND";
-    private String _stationId = "GHCND:USC00435733";
-    private String _token = "FAfgCdtvBoVIrHwZdHDBNqEzrcWrHIZz";
-    private HttpURLConnection _client;
-    public Integer _result;
+public class WeatherMan {
 
+    private Context _context;
+    private Map<Integer, Season> _tempMap;
+
+    public WeatherMan(Context context)
+    {
+        _context = context;
+    }
     // http://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&datatypeid=TMIN&stationid=GHCND:USC00435733&startdate=1888-02-01&enddate=1888-04-20&limit=200
 
-    @Override
-    protected Integer doInBackground(Integer... params) {
-        int count = params.length;
-        for(int i = 0; i < count; i++)
-        {
-            Integer toRet = getClimateScore(params[i]);
-            return toRet;
-        }
-        return null;
-    }
-
-    public int getClimateScore(int inYear)
-    {
+    public Season computeScore(int year) throws XmlPullParserException, IOException {
         int score = 0;
-        int year = inYear;
 
-        String startDate = String.valueOf(inYear) + "-02-15";
-        String endDate = String.valueOf(inYear) + "-05-20";
-
-        // get temp data
-        JSONObject data = getTempJson(startDate, endDate);
-        if(data == null)
+        if(_tempMap == null)
         {
-            return -1;
+            Resources res = _context.getResources();
+            XmlPullParser xpp = res.getXml(R.xml.tempdata);
+
+            Map<Integer, Season> smap = readFeed(xpp);
+            _tempMap = smap;
         }
-        // use temp data to calculate # of good/norm/poor days
-        int[] results = sortDays(data);
 
-        // use dayrray to calculate gallons of sap
-        score = calculateScore(results);
+        int gday = 0;
+        int fday = 0;
+        int bday = 0;
 
-        return score;
-    }
+        Season curSeason = _tempMap.get(year);
+        for(SeasonDay d : curSeason.days)
+        {
+            double[] ds = new double[2];
+            ds[0] = d.tmax;
+            ds[1] = d.tmin;
 
-    public int[] sortDays(JSONObject temps)
-    {
-        int dgood = 0;
-        int dfair = 0;
-        int dbad = 0;
-
-        // Max should be in 0, Min in 1
-        int[] days = new int[3];
-
-        try {
-            JSONArray results = temps.getJSONArray("results");
-            double[] day = new double[2];
-            String lastDay = "";
-            String curDay;
-            for(int i = 0; i < results.length(); i++)
+            int q = determineDay(ds);
+            switch(q)
             {
-                JSONObject o = results.getJSONObject(i);
-                curDay = o.getString("date");
-
-                if(curDay.equals(lastDay))
-                {
-                    if(o.getString("datatype").equals("TMAX"))
-                        {    day[0] = o.getInt("value"); }
-                    else
-                        {    day[1] = o.getInt("value"); }
-                    int quality = determineDay(day);
-                    switch(quality)
-                    {
-                        case 0: dbad++;
-                            System.out.println("Bad day!");
-                            break;
-                        case 1: dfair++;
-                            System.out.println("Fair day!");
-                            break;
-                        case 2: dgood++;
-                            System.out.println("Good day!");
-                            break;
-                    }
-                }
-                else
-                {
-                    System.out.println(o.getString("date"));
-                    day = new double[2];
-                    if(o.getString("datatype").equals("TMAX"))
-                        {    day[0] = o.getDouble("value"); }
-                    else
-                        {    day[1] = o.getDouble("value"); }
-                }
-
-                lastDay = curDay;
+                case 0:
+                    bday++;
+                    break;
+                case 1:
+                    fday++;
+                    break;
+                case 2:
+                    gday++;
+                    break;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
         }
 
-        days[0] = dbad;
-        days[1] = dfair;
-        days[2] = dgood;
+        int[] dq = new int[3];
+        dq[0] = bday;
+        dq[1] = fday;
+        dq[2] = gday;
 
-        return days;
+        curSeason.dayQuality = dq;
+        score = crunchDays(dq);
+        curSeason.climateMod = score;
+
+        return curSeason;
     }
 
-    public int calculateScore(int[] days)
+    public Map<Integer, Season> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException
+    {
+        Map<Integer, Season> seasons = new HashMap<Integer, Season>();
+
+        parser.require(XmlPullParser.START_TAG, null, "seasons");
+        while(parser.next() != XmlPullParser.END_TAG)
+        {
+            if(parser.getEventType() != XmlPullParser.START_TAG)
+            {
+                continue;
+            }
+            String name = parser.getName();
+            if(name.equals("season"))
+            {
+                Season s = readSeason(parser);
+                seasons.put(s.year, s);
+            }
+        }
+
+        return seasons;
+    }
+
+    private Season readSeason(XmlPullParser parser) throws IOException, XmlPullParserException {
+        Season toRet = new Season();
+        int year;
+        List<SeasonDay> days = new ArrayList<SeasonDay>();
+        parser.require(XmlPullParser.START_TAG, null, "season");
+
+        year = Integer.valueOf(parser.getAttributeValue(0));
+        toRet.year = year;
+
+        while(parser.next() != XmlPullParser.END_TAG)
+        {
+            days.add(readDay(parser));
+        }
+
+        toRet.days = days;
+        return toRet;
+    }
+
+    private SeasonDay readDay(XmlPullParser parser) throws IOException, XmlPullParserException
+    {
+        parser.require(XmlPullParser.START_TAG, null, "d");
+        String date = parser.getAttributeValue(0);
+        Double tmax = Double.valueOf(parser.getAttributeValue(1));
+        Double tmin = Double.valueOf(parser.getAttributeValue(2));
+
+        SeasonDay toRet = new SeasonDay();
+        toRet.date = date;
+        toRet.tmax = tmax;
+        toRet.tmin = tmin;
+
+        return toRet;
+    }
+
+
+    public int crunchDays(int[] days)
     {
         int score = 0;
 
-        System.out.println("Good days: " + days[2]);
-        System.out.println("Fair days: " + days[1]);
-        System.out.println("Bad days: " + days[0]);
         score += days[1];
         score += (days[2]*2);
 
@@ -158,61 +175,11 @@ public class WeatherMan extends AsyncTask<Integer, Void, Integer> {
         }
         if(max < 0 || min > 0)
         {
-            System.out.println("Bad day - max: " + max + " min: " + min);
             quality = 0;
         }
 
         return quality;
     }
-    public JSONObject getTempJson(String sDate, String eDate)
-    {
-        JSONObject toRet = null;
-        String startDate = sDate;
-        String endDate = eDate;
 
-        StringBuilder urlString = new StringBuilder();
-        urlString.append(_endpoint);
-        urlString.append("data?");
-        urlString.append("datasetid=").append(_dataSetId);
-        urlString.append("&datatypeid=").append("TMAX");
-        urlString.append("&datatypeid=").append("TMIN");
-        urlString.append("&stationid=").append(_stationId);
-        urlString.append("&startdate=").append(startDate);
-        urlString.append("&enddate=").append(endDate);
-        urlString.append("&limit=500");
 
-        try {
-            URL url = new URL(urlString.toString());
-            _client = (HttpURLConnection) url.openConnection();
-            _client.setRequestMethod("GET");
-            _client.addRequestProperty("token", _token);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(_client.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.close();
-
-            System.out.println(sb.toString());
-            toRet = new JSONObject(sb.toString());
-            if((toRet == null) | (sb.toString() == ""))
-            {
-                return toRet;
-            }
-
-            return toRet;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            _client.disconnect();
-        }
-
-        return toRet;
-    }
 }

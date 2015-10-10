@@ -34,6 +34,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -53,6 +55,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
 
+        Button startBtn = (Button) findViewById(id.start);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (checkName()) {
+                    setContentView(R.layout.activity_main);
+                    setTitle();
+
+                    Button storeBtn = (Button) findViewById(id.storeButton);
+                    storeBtn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            setContentView(R.layout.activity_store);
+                            ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+                            generateStoreControls();
+                            updateResources();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

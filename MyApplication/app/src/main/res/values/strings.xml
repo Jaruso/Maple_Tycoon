@@ -17,6 +17,7 @@
     <string name="naturalGasFurnaceDescription"></string>
     <string name="propaneFurnaceDescription"></string>
     <string name="steamFurnaceDescription"></string>
+    <string name="trucksDescription">Trucks make it even easier to harvest sap. Each Truck you own increases the amount of sap you will gather each season</string>
     <string name="plasticTubingDescription">Plastic Tubing allows you to have a network of tubes that to all the trees. You will gather more sap when using this system</string>
     <string name="vacuumPumpDescription">The vacuum pump upgrades allows the plastic tubing to gather sap even faster. Gather sap even faster using the plastic tubing system</string>
     <string name="preheatersDescription">Preheaters recycle heat lost in steam. Using a preheater on a steam reduces emissions </string>

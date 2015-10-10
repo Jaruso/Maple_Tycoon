@@ -25,6 +25,8 @@ import android.widget.TextView;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.joe.mapletycoon.R.*;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public Store mStore = new Store();
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
     public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
+    public HashMap<Integer, Integer> climateScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,26 +198,26 @@ public class MainActivity extends AppCompatActivity {
         bucket.startAnimation(animFadein);
         bucket.startAnimation(animMove);
 
+        runSimulation();
+
 
     }
 
-    public void createSummary(){
+    public void createSummary(float totalMoney, float totalSap, float totalSyrup){
 
-        float avgGallons = 0.0f;  //
-        int totalGallons = 0;     //
-        float totalMade = 0.0f;   //
+
         float avgTemp = 0.0f;     //
         String fact = "";         //
 
 
-        TextView avgGalText = (TextView) findViewById(id.avgsyrup);
-        avgGalText.setText(Float.toString(avgGallons));
+        TextView avgGalText = (TextView) findViewById(id.totalsap);
+        avgGalText.setText(Float.toString(totalSap));
 
         TextView totalGalText = (TextView) findViewById(id.totalsyrup);
-        totalGalText.setText(Float.toString(totalGallons));
+        totalGalText.setText(Float.toString(totalSyrup));
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText(Float.toString(totalMade));
+        totalText.setText(Float.toString(totalMoney));
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
@@ -223,6 +226,47 @@ public class MainActivity extends AppCompatActivity {
         factText.setText(fact);
 
     }
+
+    public enum effect{
+        sap,
+        syrup,
+        emmisions,
+        money
+    }
+
+    public void runSimulation(){
+      //  climateScores.get(currentYear);
+        float sapPerTree=0.3f;
+        int treePerHouse=500;
+        float totalSap=sapPerTree*treePerHouse*1;
+        float totalSyrup=totalSap/35;
+        float totalMoney=totalSyrup*30;
+       for(StoreItem item: mStore.getAvailabelItems()){
+           effect e=item.getEffect();
+           switch(e) {
+               case sap:
+                   totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
+                   totalSyrup = totalSap / 35;
+                   totalMoney = totalSyrup * 30;
+                   break;
+               case syrup:
+                   totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
+                   totalMoney = totalSyrup * 30;
+                   break;
+               case emmisions:
+                   break;
+               case money:
+                   totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
+                   break;
+           }
+           setContentView(layout.summary_activity);
+           createSummary(totalMoney, totalSap, totalSyrup);
+
+
+
+           }
+       }
+
 
 
 

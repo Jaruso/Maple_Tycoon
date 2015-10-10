@@ -18,11 +18,10 @@ public class Store {
     {
         //initialize availableItems
         _availableItems = new ArrayList<StoreItem>();
-        _availableItems.add(0, new StoreItem(100, "Worker", -1, R.string.workerDescription));
-        _availableItems.add(1, new StoreItem(200, "Vat", 3, R.string.vatDescription));
-        _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription));
-        _availableItems.add(3, new StoreItem(500, "Wood Furnace", 10, R.string.woodFurnanceDescription));
-
+        _availableItems.add(0, new StoreItem(100, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, 1.1f));
+        _availableItems.add(1, new StoreItem(200, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, 1.25f));
+        _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, 1.5f));
+        _availableItems.add(3, new StoreItem(500, "Wood Furnace", 10, R.string.woodFurnanceDescription,MainActivity.effect.syrup, 1.25f ));
        // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
       //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
@@ -93,4 +92,6 @@ public class Store {
     {
         return _availableItems.get(0).getAmount();
     }
+
+    public int getFurnaces() { return _availableItems.get(3).getAmount();}
 }

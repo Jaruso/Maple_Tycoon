@@ -331,5 +331,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void gameEnd(float carbonEmissions){
+        setContentView(layout.end_activity);
+        TextView emissions = (TextView) findViewById(id.climate);
+        TextView money = (TextView) findViewById(id.earned);
+
+        emissions.setText("You have added " + String.format("%.2f", carbonEmissions) + " pounds of carbon to the atmosphere.");
+        emissions.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
+
+
+    }
+
 }
 

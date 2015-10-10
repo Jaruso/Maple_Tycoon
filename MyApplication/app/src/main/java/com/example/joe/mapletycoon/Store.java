@@ -1,6 +1,7 @@
 package com.example.joe.mapletycoon;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -59,13 +60,18 @@ public class Store {
     {
         _money += moneyMade;
         ArrayList<StoreItem> newItems = new ArrayList<StoreItem>();
-
+        ArrayList<Integer> toRemove = new ArrayList<Integer>();
         for (Map.Entry<Integer, StoreItem> entry : _futureItems.entrySet()) {
                 //move it to the availableItems list
-                if(entry.getKey() > year) {
+                if(entry.getKey() <= year) {
                     _availableItems.add((StoreItem) entry.getValue());
-                    newItems.add((StoreItem) entry.getValue());
+                    toRemove.add(entry.getKey());
                 }
+        }
+
+        for(Integer i : toRemove)
+        {
+            toRemove.remove(i);
         }
 
         return newItems;

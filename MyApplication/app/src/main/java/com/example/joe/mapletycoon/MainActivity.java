@@ -46,12 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     storeBtn.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View view) {
                             setContentView(R.layout.activity_store);
-<<<<<<< HEAD
                             updateResources();
-=======
                             ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
                             generateStoreControls();
->>>>>>> origin/master
                         }
                     });
                 } else {
@@ -107,11 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
     public void updateResources ()
     {
-        TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(userStore.getMoney().ToString());
+        //TextView money = (TextView) findViewById(id.moneynum);
+       // money.setText(userStore.getMoney().ToString());
 
        // TextView worker = (TextView) findViewById(id.workernum);
        /// worker.setText(mUsername + ", " + currentYear);
@@ -121,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-=======
     public void generateStoreControls()
     {
         ArrayList<StoreItem> items = mStore.getAvailabelItems();
@@ -168,5 +163,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
->>>>>>> origin/master
 }

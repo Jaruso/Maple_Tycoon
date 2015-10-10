@@ -7,12 +7,14 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/mainTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:height="90dp"
+        android:gravity="center|bottom" />/>
 
 
 
@@ -25,5 +27,36 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="storeButtonOnClick" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tappingtree"
+        android:layout_below="@+id/mainTitle"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resourcetitle"
+        android:id="@+id/resourcetitle"
+        android:layout_below="@+id/tappingtree"
+
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/workerimage"
+        android:layout_below="@+id/resourcetitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_toRightOf="@+id/workerimage"
+        android:layout_toEndOf="@+id/imageView2" />
 
 </RelativeLayout>

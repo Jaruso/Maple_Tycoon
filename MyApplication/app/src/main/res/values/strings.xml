@@ -5,6 +5,7 @@
 
     <string name="start">Begin Sugarin!</string>
     <string name="title">Maple Tycoon 2015</string>
+    <string name="resourcetitle">Current Resources</string>
     <string name="askName">What is your Sugarhouse name?</string>
     <string name="mfont">monospace</string>
 

@@ -12,6 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/mainTitle"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_gravity="center_horizontal"
         android:height="90dp"
         android:gravity="center|bottom" />/>
@@ -29,11 +30,20 @@
         android:onClick="storeButtonOnClick" />
 
     <ImageButton
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tappingtree"
-        android:layout_below="@+id/mainTitle"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/treetest"
+        android:adjustViewBounds="true"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_below="@id/mainTitle"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:background="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"

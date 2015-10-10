@@ -27,14 +27,14 @@ public class Store {
         // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
       //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
-        _futureItems.put(1940, new StoreItem(10000,"Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap,3.0f));
-        _futureItems.put(1980, new StoreItem(10000,"Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap,2.0f));
-        _futureItems.put(1980, new StoreItem(10000,"Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap,2.0f));
-        _futureItems.put(1930, new StoreItem(10000,"Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap,1.5f));
+        _futureItems.put(1940, new StoreItem(10000, "Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap, 3.0f));
+        _futureItems.put(1980, new StoreItem(10000, "Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap, 2.0f));
+        _futureItems.put(1980, new StoreItem(10000, "Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap, 2.0f));
+        _futureItems.put(1930, new StoreItem(10000, "Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap, 1.5f));
         _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f));
-        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f));
-        _futureItems.put(1970, new StoreItem(15000,"Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,1.5f));
-        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,1.5f));
+        _futureItems.put(1970, new StoreItem(10000, "Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap, 2.0f));
+        _futureItems.put(1970, new StoreItem(15000, "Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap, 1.5f));
+        _futureItems.put(1970, new StoreItem(10000, "Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions, 1.5f));
         _futureItems.put(1990, new StoreItem(10000,"Super Charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,2.0f));
 
 
@@ -107,7 +107,17 @@ public class Store {
         return _availableItems.get(0).getAmount();
     }
 
-    public int getFurnaces() { return _availableItems.get(3).getAmount();}
+    public int getFurnaces() {
+        int total = 0;
+
+        total += _availableItems.get(3).getAmount();
+        total += _availableItems.get(4).getAmount();
+
+        total += -_futureItems.get(1980).getAmount();
+        total += -_futureItems.get(1930).getAmount();
+
+        return total;
+    }
 
     public void addMoney(float profit) { _money += profit;}
 }

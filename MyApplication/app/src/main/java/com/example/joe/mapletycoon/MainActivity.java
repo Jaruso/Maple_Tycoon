@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -191,15 +192,25 @@ public class MainActivity extends AppCompatActivity {
         Animation animMove=AnimationUtils.loadAnimation(getApplicationContext(), anim.move);
         Animation animMoveTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.movetap);
         Animation animFadeinTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.fadeintap);
-        ImageView bucket=(ImageView) findViewById(id.bucket);
+        final ImageView bucket=(ImageView) findViewById(id.bucket);
         ImageView tap=(ImageView) findViewById(id.tap);
         tap.startAnimation(animFadeinTap);
         tap.startAnimation(animMoveTap);
         bucket.startAnimation(animFadein);
         bucket.startAnimation(animMove);
 
-        runSimulation();
+        animMove.setAnimationListener(new Animation.AnimationListener() {
+            public void onAnimationStart(Animation a) {
+            }
 
+            public void onAnimationRepeat(Animation a) {
+            }
+
+            public void onAnimationEnd(Animation a) {
+                runSimulation();
+            }
+
+        });
 
     }
 
@@ -208,7 +219,6 @@ public class MainActivity extends AppCompatActivity {
 
         float avgTemp = 0.0f;     //
         String fact = "";         //
-
 
         TextView avgGalText = (TextView) findViewById(id.totalsap);
         avgGalText.setText(Float.toString(totalSap));
@@ -259,7 +269,16 @@ public class MainActivity extends AppCompatActivity {
                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
                    break;
            }
-           setContentView(layout.summary_activity);
+
+
+           LayoutInflater inflator=getLayoutInflater();
+           View view=inflator.inflate(layout.summary_activity, null, false);
+           view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+           Animation myAnim = view.getAnimation();
+           myAnim.setDuration(5000);
+           view.setAnimation(myAnim);
+           setContentView(view);
+
            createSummary(totalMoney, totalSap, totalSyrup);
 
 

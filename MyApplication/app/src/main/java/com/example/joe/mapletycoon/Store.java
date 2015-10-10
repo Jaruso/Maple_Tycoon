@@ -25,6 +25,13 @@ public class Store {
        // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
       //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
+        _futureItems.put(1970, new StoreItem(10000,"Plastic tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f));
+        _futureItems.put(1970, new StoreItem(15000,"Vacuum tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,1.5f));
+        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,1.5f));
+        _futureItems.put(1990, new StoreItem(10000,"Super charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,2.0f));
+
+
+
     }
 
     //moves items from futureItems to availableItems

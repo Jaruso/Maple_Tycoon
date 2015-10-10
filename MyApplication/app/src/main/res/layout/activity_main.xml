@@ -124,7 +124,6 @@
         android:textColor="#FFFFFF"
         />
 
-<<<<<<< Updated upstream
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -138,7 +137,7 @@
         android:layout_alignRight="@+id/resourcetitle"
         android:layout_alignEnd="@+id/resourcetitle"
         android:layout_marginBottom="34dp" />
-=======
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,6 +147,5 @@
         android:layout_above="@+id/storeButton"
         android:layout_alignRight="@+id/resourcetitle"
         android:layout_alignEnd="@+id/resourcetitle" />
->>>>>>> Stashed changes
 
 </RelativeLayout>

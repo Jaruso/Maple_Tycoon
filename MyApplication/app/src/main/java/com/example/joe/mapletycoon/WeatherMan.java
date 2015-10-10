@@ -44,7 +44,7 @@ public class WeatherMan {
     }
     // http://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&datatypeid=TMAX&datatypeid=TMIN&stationid=GHCND:USC00435733&startdate=1888-02-01&enddate=1888-04-20&limit=200
 
-    public Season computeScore(int year) throws XmlPullParserException, IOException {
+    public int computeScore(int year) throws XmlPullParserException, IOException {
         int score = 0;
 
         if(_tempMap == null)
@@ -91,7 +91,7 @@ public class WeatherMan {
         score = crunchDays(dq);
         curSeason.climateMod = score;
 
-        return curSeason;
+        return score;
     }
 
     public Map<Integer, Season> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException

@@ -33,27 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
-        Button startBtn = (Button) findViewById(id.start);
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (checkName()) {
-                    setContentView(R.layout.activity_main);
-                    setTitle();
 
-                    Button storeBtn = (Button) findViewById(id.storeButton);
-                    storeBtn.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View view) {
-                            setContentView(R.layout.activity_store);
-                            ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
-                            generateStoreControls();
-                            updateResources();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
    // @Override
@@ -164,5 +144,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void startClick(View view) {
+
+        if (checkName()) {
+            setContentView(R.layout.activity_main);
+            setTitle();
+        } else {
+            Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void storeClick(View view) {
+
+        setContentView(R.layout.activity_store);
+        ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+        generateStoreControls();
+    }
+    public void storeExitClick(View view) {
+        updateResources();
+        setContentView(R.layout.activity_main);
+    }
 
 }

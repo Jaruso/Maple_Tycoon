@@ -331,16 +331,26 @@ public class MainActivity extends AppCompatActivity {
         mStore.addMoney(totalMoney);
         currentYear += 1;
         totalCarbon += carbonMade;
+        gameEnd();
 
     }
 
-    public void gameEnd(float carbonEmissions){
+    public void gameEnd(){
         setContentView(layout.end_activity);
         TextView emissions = (TextView) findViewById(id.climate);
         TextView money = (TextView) findViewById(id.earned);
+        TextView endTitle=(TextView) findViewById(id.endTitle);
+        if(mStore.getMoney()<0){
+            endTitle.setText("You have gone backrupt!");
+            emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
+            money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
+        }
+        else if(currentYear==2015){
+            endTitle.setText("You have reached the current year!");
+            emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
+            money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
+        }
 
-        emissions.setText("You have added " + String.format("%.2f", carbonEmissions) + " pounds of carbon to the atmosphere.");
-        emissions.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
 
 
     }

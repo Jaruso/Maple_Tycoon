@@ -9,21 +9,21 @@
     <string name="askName">What is your Sugarhouse\'s name?</string>
     <string name="mfont">monospace</string>
 
-    <string name="workerDescription">Workers harvest sap and refine it into syrup. They are paid $100 every season and get an additional $100 sign-on bonus.</string>
-    <string name="sugarHouseDescription">You need at least 5 workers per sugar house, but more houses are required to buy more equipment</string>
-    <string name="vatDescription">Vats are used in refining sap to syrup. They increase the efficiency of the conversion process.</string>
-    <string name="carriageDescription">Carriages make it easier to harvest sap. Each carriage you own increases the amount of sap you wll gather each season</string>
-    <string name="woodFurnanceDescription">The wood furnace is used for refining sap. You will make more syrup from the sap you gather.</string>
-    <string name="oilFurnaceDescription"></string>
+    <string name="workerDescription">Workers harvest sap and refine it into syrup. They are paid $100 every season and get an additional $100 sign-on bonus. Upkeep per unit- $150.00</string>
+    <string name="sugarHouseDescription">You need at least 5 workers per sugar house, but more houses are required to buy more equipment. Upkeep per unit- $150.00</string>
+    <string name="vatDescription">Vats are used in refining sap to syrup. They increase the efficiency of the conversion process. Upkeep per unit- $0.00</string>
+    <string name="carriageDescription">Carriages make it easier to harvest sap. Each carriage you own increases the amount of sap you wll gather each season. Upkeep per unit- $150.00</string>
+    <string name="woodFurnanceDescription">The wood furnace is used for refining sap. You will make more syrup from the sap you gather. Upkeep per unit- $100.00</string>
+    <string name="oilFurnaceDescription">The oil furnace is used for refining sap. More effective than the wood furnace, but produces emissions. Upkeep per unit- $175.00</string>
     <string name="naturalGasFurnaceDescription"></string>
     <string name="propaneFurnaceDescription"></string>
     <string name="steamFurnaceDescription"></string>
-    <string name="trucksDescription">Trucks make it even easier to harvest sap. Each Truck you own increases the amount of sap you will gather each season</string>
-    <string name="plasticTubingDescription">Plastic Tubing allows you to have a network of tubes that to all the trees. You will gather more sap when using this system</string>
-    <string name="vacuumPumpDescription">The vacuum pump upgrades allows the plastic tubing to gather sap even faster. Gather sap even faster using the plastic tubing system</string>
-    <string name="preheatersDescription">Preheaters recycle heat lost in steam. Using a preheater on a steam reduces emissions </string>
-    <string name="superChargedPreheatersDescription">Super charged preheaters more effectively recycles heat loss in steam. Using a super charged preheater reduces emissions even firther in steam</string>
-    <string name="reverseOsmosisDescription">Reverse osmosis helps remove water from the sap before boiling. This reduces emissions and increases production of syrup</string>
+    <string name="trucksDescription">Trucks make it even easier to harvest sap. Each Truck you own increases the amount of sap you will gather each season. Upkeep per unit-</string>
+    <string name="plasticTubingDescription">Plastic Tubing allows you to have a network of tubes that to all the trees. You will gather more sap when using this system. Upkeep per unit-</string>
+    <string name="vacuumPumpDescription">The vacuum pump upgrades allows the plastic tubing to gather sap even faster. Gather sap even faster using the plastic tubing system. Upkeep per unit-</string>
+    <string name="preheatersDescription">Preheaters recycle heat lost in steam. Using a preheater on a steam reduces emissions. Upkeep per unit- </string>
+    <string name="superChargedPreheatersDescription">Super charged preheaters more effectively recycles heat loss in steam. Using a super charged preheater reduces emissions even firther in steam. Upkeep per unit-</string>
+    <string name="reverseOsmosisDescription">Reverse osmosis helps remove water from the sap before boiling. This reduces emissions and increases production of syrup. Upkeep per unit-</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_store">StoreActivity</string>
 

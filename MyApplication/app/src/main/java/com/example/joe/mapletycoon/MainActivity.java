@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         int mFurnace = mStore.getFurnaces();
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Float.toString(mMoney));
+        money.setText(String.format("$ %.2f", mMoney));
 
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
             description.setOnClickListener(descClickListener);
             layout.addView(description);
 
-            ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+            ((TextView) findViewById(id.moneyAmount)).setText(String.format("$ %.2f", mStore.getMoney()));
         }
     }
 
@@ -301,20 +301,20 @@ public class MainActivity extends AppCompatActivity {
             effect e = item.getEffect();
             switch (e) {
                 case sap:
-                    totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalSap *= item.getMultiplyer()*item.getAmount()+1;
                     totalSyrup = totalSap / 35;
                     totalMoney = totalSyrup * 30;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
                 case syrup:
-                    totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalSyrup *=item.getMultiplyer()*item.getAmount()+1;
                     totalMoney = totalSyrup * 30;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
                 case emmisions:
                     break;
                 case money:
-                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalMoney *= item.getMultiplyer()*item.getAmount()+1;
                     totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
                     break;
             }
@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
             TextView emissions = (TextView) findViewById(id.climate);
             TextView money = (TextView) findViewById(id.earned);
             TextView endTitle=(TextView) findViewById(id.endTitle);
-            endTitle.setText("You have gone backrupt!");
+            endTitle.setText("You have gone bankrupt!");
             emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
             money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
         }

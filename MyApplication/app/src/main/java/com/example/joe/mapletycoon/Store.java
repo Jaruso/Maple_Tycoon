@@ -121,4 +121,14 @@ public class Store {
 
 
     public void addMoney(float profit) { _money += profit;}
+
+    public int getDescriptionId (int index)
+    {
+        return _availableItems.get(index).getDescriptionId();
+    }
+
+    public String getName (int index)
+    {
+        return _availableItems.get(index).getName();
+    }
 }

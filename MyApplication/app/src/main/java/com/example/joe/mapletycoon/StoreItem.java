@@ -48,7 +48,8 @@ public class StoreItem {
     //buys one of this item
     public void buy()
     {
-        mAmountOwned++;
+        if( mMaxAmount == -1 || mAmountOwned < mMaxAmount)
+            mAmountOwned++;
     }
 
     public boolean sell()
@@ -71,4 +72,9 @@ public class StoreItem {
     public float getUpkeep(){ return mUpkeep;};
 
     public MainActivity.effect getEffect (){ return mMyEffect;}
+
+    public int getDescriptionId()
+    {
+        return mDescriptionId;
+    }
 }

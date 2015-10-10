@@ -15,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:height="90dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:typeface="monospace"/>
 
 
     <ImageButton
@@ -39,6 +40,7 @@
         android:text="@string/resourcetitle"
         android:id="@+id/resourcetitle"
         android:layout_below="@+id/tappingtree"
+        android:fontFamily="monospace"
         />
 
     <ImageView
@@ -138,16 +140,6 @@
         android:layout_alignEnd="@+id/resourcetitle"
         android:layout_marginBottom="30dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/climateScoreTest"
-        android:layout_above="@+id/storeButton"
-        android:layout_alignRight="@+id/resourcetitle"
-        android:layout_alignEnd="@+id/resourcetitle" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -161,5 +153,14 @@
         android:layout_alignRight="@+id/resourcetitle"
         android:layout_alignEnd="@+id/resourcetitle"
         android:layout_marginBottom="45dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tap the Tree to Begin the Season"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/tappingtree"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

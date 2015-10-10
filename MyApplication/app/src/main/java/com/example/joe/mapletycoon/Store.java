@@ -12,20 +12,20 @@ public class Store {
 
     private ArrayList<StoreItem> _availableItems;
     private HashMap<Integer, StoreItem> _futureItems; //maps items to the years they unlock
-    private float _money = 10000; //the amount of money that the user has
+    private int _money = 10000; //the amount of money that the user has
 
     public Store()
     {
         //initialize availableItems
         _availableItems = new ArrayList<StoreItem>();
-        _availableItems.add(0, new StoreItem(100.00f, "Worker", -1));
-        _availableItems.add(1, new StoreItem(200f, "Vat", 3));
-        _availableItems.add(2, new StoreItem(100f, "Carriage", 5));
-        _availableItems.add(3, new StoreItem(500f, "Wood Furnace", 10));
+        _availableItems.add(0, new StoreItem(100, "Worker", -1, R.string.workerDescription));
+        _availableItems.add(1, new StoreItem(200, "Vat", 3, R.string.vatDescription));
+        _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription));
+        _availableItems.add(3, new StoreItem(500, "Wood Furnace", 10, R.string.woodFurnanceDescription));
 
        // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
-        _futureItems.put(1920, new StoreItem(10000f, "Truck", 10));
+      //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
     }
 
     //moves items from futureItems to availableItems
@@ -74,7 +74,7 @@ public class Store {
         return false;
     }
 
-    public float getMoney()
+    public int getMoney()
     {
         return _money;
     }

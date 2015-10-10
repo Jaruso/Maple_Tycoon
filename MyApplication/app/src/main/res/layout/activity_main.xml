@@ -24,14 +24,14 @@
         android:id="@+id/tappingtree"
         android:src="@drawable/treetest"
         android:adjustViewBounds="true"
-        android:maxWidth="150dp"
-        android:maxHeight="150dp"
+        android:maxWidth="300dp"
+        android:maxHeight="300dp"
         android:scaleType="fitCenter"
         android:layout_marginLeft="90dp"
         android:layout_marginRight="90dp"
         android:layout_below="@id/mainTitle"
 
-        />
+        android:onClick="TreeClick" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,5 +121,19 @@
         android:layout_alignParentEnd="true"
         android:onClick="storeClick"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bucket"
+        android:src="@drawable/bucket"
+        android:adjustViewBounds="true"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:visibility="invisible"
+        android:layout_above="@+id/resourcetitle"
+        android:layout_alignRight="@+id/resourcetitle"
+        android:layout_alignEnd="@+id/resourcetitle"
+        android:layout_marginBottom="34dp" />
 
 </RelativeLayout>

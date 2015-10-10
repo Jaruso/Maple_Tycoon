@@ -8,8 +8,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
@@ -33,6 +37,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
+
+
+        Button startBtn = (Button) findViewById(id.start);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if(checkName()) {
+                    setContentView(R.layout.activity_main);
+                    setTitle();
+
+                    Button storeBtn = (Button) findViewById(id.storeButton);
+                    storeBtn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            setContentView(R.layout.activity_store);
+                        }
+                    });
+
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
     }
 
@@ -84,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateResources ()
     {
-        float mMoney = mStore.getMoney();
+        int mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
 
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Float.toString(mMoney) );
+        money.setText(Integer.toString(mMoney) );
 
         TextView worker = (TextView) findViewById(id.workernum);
-        worker.setText(mWorker);
+        worker.setText(Integer.toString(mWorker));
 
        // TextView house = (TextView) findViewById(id.housenum);
        // house.setText(mUsername + ", " + currentYear);
@@ -160,11 +189,29 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
         generateStoreControls();
     }
+<<<<<<< HEAD
 
     public void storeExitClick(View view)
     {
         updateResources();
+=======
+    public void storeExitClick(View view) {
+>>>>>>> origin/master
         setContentView(R.layout.activity_main);
+        updateResources();
+    }
+
+    public void TreeClick(View view){
+
+        Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fadein);
+        Animation animMove=AnimationUtils.loadAnimation(getApplicationContext(), anim.move);
+        ImageView tap=(ImageView) findViewById(id.bucket);
+        tap.setVisibility(View.VISIBLE);
+        tap.startAnimation(animFadein);
+        tap.startAnimation(animMove);
+
+
     }
 
 }

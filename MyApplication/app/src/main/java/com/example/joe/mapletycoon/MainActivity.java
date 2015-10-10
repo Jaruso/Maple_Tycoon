@@ -2,6 +2,8 @@ package com.example.joe.mapletycoon;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import android.widget.TextView;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -37,8 +41,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
+<<<<<<< Updated upstream
 
 
+=======
+        Button startBtn = (Button) findViewById(id.start);
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (checkName()) {
+                    setContentView(R.layout.activity_main);
+                    setTitle();
+
+                    TextView test = (TextView) findViewById(id.climateScoreTest);
+                    int val = 420;
+                    try {
+                        WeatherMan w = new WeatherMan();
+                        val = w.execute(1907).get();
+                        test.setText(String.valueOf(val));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Button storeBtn = (Button) findViewById(id.storeButton);
+                    storeBtn.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            setContentView(R.layout.activity_store);
+                            ((TextView)findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
+                            generateStoreControls();
+                            updateResources();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -92,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         int mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
 
-
         TextView money = (TextView) findViewById(id.moneynum);
         money.setText(Integer.toString(mMoney) );
 
@@ -110,42 +151,48 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i = 0; i < items.size(); i++)
         {
-            LinearLayout layout = (LinearLayout) findViewById(id.storeLayout);
-            LinearLayout newRow = new LinearLayout(this);
-            newRow.setId(i);
-            newRow.setOrientation(LinearLayout.HORIZONTAL);
+            GridLayout layout = (GridLayout) findViewById(id.gridLayout);
 
             TextView name = new TextView(this);
             name.setId(i + 100);
+            name.setTextSize(14);
+            name.setGravity(Gravity.CENTER);
+            name.setTypeface(Typeface.MONOSPACE);
             name.setText(items.get(i).getName());
-            newRow.addView(name);
+            layout.addView(name);
+
+            TextView amount = new TextView(this);
+            amount.setText("(" + Integer.toString(mStore.getItemAmount(i)) + ")");
+            amount.setTextSize(14);
+            amount.setGravity(Gravity.CENTER);
+            amount.setTypeface(Typeface.MONOSPACE);
+            amount.setId(i + 400);
+            layout.addView(amount);
 
             Button buy = new Button(this);
             buy.setText("Buy");
             buy.setId(i + 200);
             buy.setOnClickListener(buyClickListener);
-
-            newRow.addView(buy);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)buy.getLayoutParams();
-            params.weight = 1.0f;
-            params.gravity = Gravity.RIGHT;
-            buy.setLayoutParams(params);
+            buy.setBackgroundResource(drawable.buttonstyle);
+            buy.setTextColor(Color.parseColor("#FFFFFF"));
+            layout.addView(buy);
 
             Button sell = new Button(this);
             sell.setText("Sell");
             sell.setId(i + 300);
             sell.setOnClickListener(sellClickListener);
-            newRow.addView(sell);
-            LinearLayout.LayoutParams sellParams = (LinearLayout.LayoutParams)sell.getLayoutParams();
-            sellParams.weight = 1.0f;
-            sellParams.gravity = Gravity.RIGHT;
-            sell.setLayoutParams(sellParams);
+            sell.setBackgroundResource(drawable.buttonstyle);
+            sell.setTextColor(Color.parseColor("#FFFFFF"));
+            layout.addView(sell);
 
-            TextView amount = new TextView(this);
-            amount.setText(Integer.toString(mStore.getItemAmount(i)));
-            amount.setId(i + 400);
-            newRow.addView(amount);
-            layout.addView(newRow);
+            Button description = new Button(this);
+            description.setText("?");
+            description.setId(i + 500);
+            description.setBackgroundResource(drawable.buttonstyle);
+            description.setTextColor(Color.parseColor("#FFFFFF"));
+            layout.addView(description);
+
+
         }
     }
 

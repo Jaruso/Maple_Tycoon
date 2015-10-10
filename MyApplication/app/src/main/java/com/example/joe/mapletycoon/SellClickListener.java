@@ -42,7 +42,7 @@ public class SellClickListener implements View.OnClickListener {
         }
 
         else{
-            amount.setText(Integer.toString(mStore.get().getItemAmount(index)));
+            amount.setText( "(" + Integer.toString(mStore.get().getItemAmount(index)) + ")");
         }
     }
 }

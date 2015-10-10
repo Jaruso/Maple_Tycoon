@@ -23,7 +23,7 @@ public class Store {
         //initialize availableItems
         _availableItems = new ArrayList<StoreItem>();
 
-        _availableItems.add(0, new StoreItem(50, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, .5f,150,0.0f));
+        _availableItems.add(0, new StoreItem(50, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, .5f,100,0.0f));
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
@@ -33,7 +33,7 @@ public class Store {
         _availableItems.get(1).buy();
         _availableItems.add(2, new StoreItem(400, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, .1f,0,0.0f));
         _availableItems.add(3, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, .5f,25,0.0f));
-        _availableItems.add(4, new StoreItem(400, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, .5f,100,0.0f));
+        _availableItems.add(4, new StoreItem(400, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, .5f,50,0.0f));
         _availableItems.add(5, new StoreItem(500, "Oil Furnace", 10, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 1.00f,175,2.0f));
 
         // initialize futureItems

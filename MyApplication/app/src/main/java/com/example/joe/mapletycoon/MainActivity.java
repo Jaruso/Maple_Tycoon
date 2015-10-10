@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
     public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
 
-    Store userStore = new Store();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateResources ()
     {
-        //TextView money = (TextView) findViewById(id.moneynum);
-       // money.setText(userStore.getMoney().ToString());
+        float mMoney = mStore.getMoney();
+
+
+        TextView money = (TextView) findViewById(id.moneynum);
+        money.setText(Float.toString(mMoney) );
 
        // TextView worker = (TextView) findViewById(id.workernum);
        /// worker.setText(mUsername + ", " + currentYear);

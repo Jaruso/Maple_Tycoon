@@ -15,11 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
@@ -130,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
             TextView amount = new TextView(this);
             amount.setText("(" + Integer.toString(mStore.getItemAmount(i)) + ")");
             amount.setTextSize(12);
-            amount.setGravity(Gravity.CENTER);
             amount.setTypeface(Typeface.MONOSPACE);
             amount.setId(i + 400);
             layout.addView(amount);
@@ -140,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
             buy.setId(i + 200);
             buy.setOnClickListener(buyClickListener);
             buy.setBackgroundResource(drawable.buttonstyle);
+            buy.setTextSize(12);
             buy.setTextColor(Color.parseColor("#FFFFFF"));
             layout.addView(buy);
 
@@ -149,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             sell.setOnClickListener(sellClickListener);
             sell.setBackgroundResource(drawable.buttonstyle);
             sell.setTextColor(Color.parseColor("#FFFFFF"));
+            sell.setTextSize(12);
             layout.addView(sell);
 
             Button description = new Button(this);
@@ -156,10 +159,11 @@ public class MainActivity extends AppCompatActivity {
             description.setId(i + 500);
             description.setBackgroundResource(drawable.buttonstyle);
             description.setTextColor(Color.parseColor("#FFFFFF"));
+            description.setTextSize(12);
             description.setOnClickListener(descClickListener);
             layout.addView(description);
 
-
+            ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
         }
     }
 
@@ -182,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
     public void storeClick(View view) {
 
         setContentView(R.layout.activity_store);
-        ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
         generateStoreControls();
     }
 

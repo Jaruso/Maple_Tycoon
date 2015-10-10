@@ -68,7 +68,7 @@ public class Store {
     //returns false if you cant afford it
     public boolean BuyItem(int index)
     {
-        if(_money > _availableItems.get(index).getPrice()) {
+        if(_money >= _availableItems.get(index).getPrice()) {
             _money -= _availableItems.get(index).getPrice();
             _availableItems.get(index).buy();
             return true;

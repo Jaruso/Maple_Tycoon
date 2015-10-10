@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (checkName()) {
             setContentView(R.layout.activity_main);
+            updateResources();
             setTitle();
         } else {
             Toast.makeText(getApplicationContext(), "Make a Name !", Toast.LENGTH_SHORT).show();

@@ -45,8 +45,18 @@ public class StoreItem {
         _amountOwned++;
     }
 
-    public void sell()
+    public boolean sell()
     {
-        _amountOwned--;
+        if(_amountOwned > 0) {
+            _amountOwned--;
+            return true;
+        }
+
+        return false;
+    }
+
+    public int getAmount()
+    {
+        return _amountOwned;
     }
 }

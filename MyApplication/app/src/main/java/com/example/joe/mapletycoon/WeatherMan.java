@@ -51,7 +51,8 @@ public class WeatherMan {
         {
             Resources res = _context.getResources();
             XmlPullParser xpp = res.getXml(R.xml.tempdata);
-
+            xpp.next();
+            xpp.next();
             Map<Integer, Season> smap = readFeed(xpp);
             _tempMap = smap;
         }
@@ -61,6 +62,11 @@ public class WeatherMan {
         int bday = 0;
 
         Season curSeason = _tempMap.get(year);
+        if(curSeason == null)
+        {
+            System.out.println("Nothing in map");
+            return -1;
+        }
         for(SeasonDay d : curSeason.days)
         {
             double[] ds = new double[2];
@@ -101,10 +107,6 @@ public class WeatherMan {
         parser.require(XmlPullParser.START_TAG, null, "seasons");
         while(parser.next() != XmlPullParser.END_TAG)
         {
-            if(parser.getEventType() != XmlPullParser.START_TAG)
-            {
-                continue;
-            }
             String name = parser.getName();
             if(name.equals("season"))
             {
@@ -125,9 +127,10 @@ public class WeatherMan {
         year = Integer.valueOf(parser.getAttributeValue(0));
         toRet.year = year;
 
-        while(parser.next() != XmlPullParser.END_TAG)
+        while(parser.next() == XmlPullParser.START_TAG)
         {
             days.add(readDay(parser));
+            parser.nextTag();
         }
 
         toRet.days = days;

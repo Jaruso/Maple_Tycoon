@@ -12,7 +12,7 @@ public class Store {
 
     private ArrayList<StoreItem> _availableItems;
     private HashMap<Integer, StoreItem> _futureItems; //maps items to the years they unlock
-    private float _money; //the amount of money that the user has
+    private float _money = 10000; //the amount of money that the user has
 
     public Store()
     {
@@ -24,6 +24,7 @@ public class Store {
         _availableItems.add(3, new StoreItem(500f, "Wood Furnace", 10));
 
        // initialize futureItems
+        _futureItems = new HashMap<Integer, StoreItem>();
         _futureItems.put(1920, new StoreItem(10000f, "Truck", 10));
     }
 
@@ -52,16 +53,25 @@ public class Store {
     }
 
     //buys 1 of the item in the list at index
-    public void BuyItem(int index)
+    //returns false if you cant afford it
+    public boolean BuyItem(int index)
     {
-        _money -= _availableItems.get(index).getPrice();
-        _availableItems.get(index).buy();
+        if(_money > _availableItems.get(index).getPrice()) {
+            _money -= _availableItems.get(index).getPrice();
+            _availableItems.get(index).buy();
+            return true;
+        }
+        return false;
     }
 
-    public void SellItem(int index)
+    public boolean SellItem(int index)
     {
-        _money += _availableItems.get(index).getPrice()/2;
-        _availableItems.get(index).sell();
+        if(_availableItems.get(index).sell()) {
+            _money += _availableItems.get(index).getPrice() / 2;
+            return true;
+        }
+
+        return false;
     }
 
     public float getMoney()
@@ -72,5 +82,15 @@ public class Store {
     public ArrayList<StoreItem> getAvailabelItems()
     {
         return _availableItems;
+    }
+
+    public int getItemAmount(int index)
+    {
+        return _availableItems.get(index).getAmount();
+    }
+
+    public int getWorkers()
+    {
+        return _availableItems.get(0).getAmount();
     }
 }

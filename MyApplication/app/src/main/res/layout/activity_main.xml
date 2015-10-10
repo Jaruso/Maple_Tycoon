@@ -118,7 +118,11 @@
         android:id="@+id/storeButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+<<<<<<< HEAD
         android:layout_alignParentEnd="true"
         />
+=======
+        android:layout_alignParentEnd="true" />
+>>>>>>> origin/master
 
 </RelativeLayout>

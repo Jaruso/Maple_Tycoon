@@ -13,7 +13,8 @@ public class StoreItem {
     private MainActivity.effect mMyEffect;
     private float mMultiplyer;
     private float mUpkeep;
-    public StoreItem(int price, String name, int maxAmount, int descriptionId, MainActivity.effect myEffect, float multiplyer, float upkeep)
+    private float mCarbon;
+    public StoreItem(int price, String name, int maxAmount, int descriptionId, MainActivity.effect myEffect, float multiplyer, float upkeep, float carbon)
     {
         mPrice = price;
         mName = name;
@@ -23,6 +24,7 @@ public class StoreItem {
         mMyEffect=myEffect;
         mMultiplyer=multiplyer;
         mUpkeep=upkeep;
+        mCarbon = carbon;
     }
 
     public int getPrice()
@@ -76,5 +78,8 @@ public class StoreItem {
     public int getDescriptionId()
     {
         return mDescriptionId;
+    }
+    public float getCarbon(){
+        return mCarbon;
     }
 }

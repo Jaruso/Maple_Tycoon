@@ -74,38 +74,35 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean checkName(){
+    public boolean checkName() {
 
         EditText nameText = (EditText) findViewById(id.editName);
         if (nameText.getText().length() != 0) {
             setName(nameText.getText().toString());
             return true;
-        }
-        else
+        } else
             return false;
     }
 
 
-    public void setName (String username)
-    {
-            mUsername = username;
+    public void setName(String username) {
+        mUsername = username;
     }
 
-    public void setTitle (){
+    public void setTitle() {
 
         TextView maintitle = (TextView) findViewById(id.mainTitle);
         maintitle.setText(mUsername + ", " + currentYear);
 
     }
 
-    public void updateResources ()
-    {
+    public void updateResources() {
         float mMoney = mStore.getMoney();
         int mWorker = mStore.getWorkers();
         int mFurnace = mStore.getFurnaces();
 
         TextView money = (TextView) findViewById(id.moneynum);
-        money.setText(Float.toString(mMoney) );
+        money.setText(Float.toString(mMoney));
 
         TextView worker = (TextView) findViewById(id.workernum);
         worker.setText(Integer.toString(mWorker));
@@ -115,12 +112,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void generateStoreControls()
-    {
+    public void generateStoreControls() {
         ArrayList<StoreItem> items = mStore.getAvailabelItems();
 
-        for(int i = 0; i < items.size(); i++)
-        {
+        for (int i = 0; i < items.size(); i++) {
             GridLayout layout = (GridLayout) findViewById(id.gridLayout);
 
             TextView name = new TextView(this);
@@ -176,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void start(View view){
+    public void start(View view) {
         setContentView(R.layout.activity_main);
         updateResources();
         setTitle();
@@ -191,20 +186,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void storeExitClick(View view) {
         setContentView(R.layout.activity_main);
         updateResources();
     }
 
-    public void TreeClick(View view){
+    public void TreeClick(View view) {
 
-        final Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
-        final Animation animMove=AnimationUtils.loadAnimation(getApplicationContext(), anim.move);
-        Animation animMoveTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.movetap);
-        Animation animFadeinTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.fadeintap);
-        final ImageView bucket=(ImageView) findViewById(id.bucket);
-        ImageView tap=(ImageView) findViewById(id.tap);
+        final Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fadein);
+        final Animation animMove = AnimationUtils.loadAnimation(getApplicationContext(), anim.move);
+        Animation animMoveTap = AnimationUtils.loadAnimation(getApplicationContext(), anim.movetap);
+        Animation animFadeinTap = AnimationUtils.loadAnimation(getApplicationContext(), anim.fadeintap);
+        final ImageView bucket = (ImageView) findViewById(id.bucket);
+        ImageView tap = (ImageView) findViewById(id.tap);
         tap.startAnimation(animFadeinTap);
         tap.startAnimation(animMoveTap);
 
@@ -238,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createSummary(float totalMoney, float totalSap, float totalSyrup, float totalUpkeep){
+    public void createSummary(float totalMoney, float totalSap, float totalSyrup, float totalUpkeep) {
 
         float avgTemp = 0.0f;     //
 
@@ -273,70 +267,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public enum effect{
+    public enum effect {
         sap,
         syrup,
         emmisions,
         money
     }
 
-    public void runSimulation(){
-      //  climateScores.get(currentYear);
-        float sapPerTree=0.3f;
-        int treePerHouse=500;
-        float totalSap=sapPerTree*treePerHouse*1;
-        float totalSyrup=totalSap/35;
-        float totalMoney=totalSyrup*30;
-        float totalUpkeep=0;
+    public void runSimulation() {
+        //  climateScores.get(currentYear);
+        float sapPerTree = 0.3f;
+        int treePerHouse = 500;
+        float totalSap = sapPerTree * treePerHouse * 1;
+        float totalSyrup = totalSap / 35;
+        float totalMoney = totalSyrup * 30;
+        float totalUpkeep = 0;
         float carbonMade = 0.0f;
-       for(StoreItem item: mStore.getAvailabelItems()) {
-           effect e = item.getEffect();
-           switch (e) {
-               case sap:
-                   totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
-                   totalSyrup = totalSap / 35;
-                   totalMoney = totalSyrup * 30;
-                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
-                   break;
-               case syrup:
-                   totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
-                   totalMoney = totalSyrup * 30;
-                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
-                   break;
-               case emmisions:
-                   break;
-               case money:
-                   totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
-                   totalUpkeep=item.getAmount()*item.getUpkeep()+totalUpkeep;
-                   break;
-           }
+        for (StoreItem item : mStore.getAvailabelItems()) {
+            effect e = item.getEffect();
+            switch (e) {
+                case sap:
+                    totalSap *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalSyrup = totalSap / 35;
+                    totalMoney = totalSyrup * 30;
+                    totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
+                    break;
+                case syrup:
+                    totalSyrup *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalMoney = totalSyrup * 30;
+                    totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
+                    break;
+                case emmisions:
+                    break;
+                case money:
+                    totalMoney *= Math.pow(item.getMultiplyer(), item.getAmount());
+                    totalUpkeep = item.getAmount() * item.getUpkeep() + totalUpkeep;
+                    break;
+            }
+            carbonMade += item.getCarbon()*item.getAmount();
 
-       }
+        }
 
-           LayoutInflater inflator=getLayoutInflater();
-           View view=inflator.inflate(layout.summary_activity, null, false);
-           view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
-           Animation myAnim = view.getAnimation();
-           myAnim.setDuration(3000);
-           view.setAnimation(myAnim);
-           setContentView(view);
+        LayoutInflater inflator = getLayoutInflater();
+        View view = inflator.inflate(layout.summary_activity, null, false);
+        view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+        Animation myAnim = view.getAnimation();
+        myAnim.setDuration(3000);
+        view.setAnimation(myAnim);
+        setContentView(view);
 
-           createSummary(totalMoney, totalSap, totalSyrup, totalUpkeep);
-        totalMoney=totalMoney-totalUpkeep;
+        createSummary(totalMoney, totalSap, totalSyrup, totalUpkeep);
+        totalMoney = totalMoney - totalUpkeep;
         mStore.addMoney(totalMoney);
         currentYear += 1;
+        totalCarbon += carbonMade;
 
-
-       }
-
-
-public void tallyCarbon(){
-
-
-
+    }
 
 }
 
-
-
-}

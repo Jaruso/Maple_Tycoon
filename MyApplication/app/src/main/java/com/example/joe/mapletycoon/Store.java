@@ -18,24 +18,23 @@ public class Store {
     {
         //initialize availableItems
         _availableItems = new ArrayList<StoreItem>();
-        _availableItems.add(0, new StoreItem(100, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, 1.1f,50));
-        _availableItems.add(1, new StoreItem(200, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, 1.25f,0));
-        _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, 1.5f,50));
-        _availableItems.add(3, new StoreItem(500, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, 1.25f,100));
-        _availableItems.add(4, new StoreItem(400, "Oil Furnace", 10, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 2.00f,125));
+        _availableItems.add(0, new StoreItem(100, "Worker", -1, R.string.workerDescription, MainActivity.effect.sap, 1.1f,50,0.0f));
+        _availableItems.add(1, new StoreItem(200, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, 1.25f,0,0.0f));
+        _availableItems.add(2, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, 1.5f,50,0.0f));
+        _availableItems.add(3, new StoreItem(500, "Wood Furnace", 10, R.string.woodFurnanceDescription, MainActivity.effect.syrup, 1.25f,100,0.0f));
+        _availableItems.add(4, new StoreItem(400, "Oil Furnace", 10, R.string.oilFurnaceDescription, MainActivity.effect.syrup, 2.00f,125,2.0f));
 
         // initialize futureItems
         _futureItems = new HashMap<Integer, StoreItem>();
       //  _futureItems.put(1920, new StoreItem(10000, "Truck", 10));
-        _futureItems.put(1940, new StoreItem(10000,"Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap,3.0f,0));
-        _futureItems.put(1980, new StoreItem(10000,"Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap,2.0f,0));
-        _futureItems.put(1980, new StoreItem(10000,"Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap,2.0f,0));
-        _futureItems.put(1930, new StoreItem(10000,"Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap,1.5f,0));
-        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f,0));
-        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f,0));
-        _futureItems.put(1970, new StoreItem(15000,"Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,1.5f,0));
-        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,1.5f,0));
-        _futureItems.put(1990, new StoreItem(10000,"Super Charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,2.0f,0));
+        _futureItems.put(1940, new StoreItem(10000,"Trucks", 10, R.string.trucksDescription, MainActivity.effect.sap,3.0f,0,1.0f));
+        _futureItems.put(1980, new StoreItem(10000,"Propane Furnace", 10, R.string.propaneFurnaceDescription, MainActivity.effect.sap,2.0f,0,1.5f));
+        _futureItems.put(1980, new StoreItem(10000,"Natural Gas Furnace", 10, R.string.naturalGasFurnaceDescription, MainActivity.effect.sap,2.0f,0,1.0f));
+        _futureItems.put(1930, new StoreItem(10000,"Steam Furnace", 10, R.string.steamFurnaceDescription, MainActivity.effect.sap,1.5f,0,1.75f));
+        _futureItems.put(1970, new StoreItem(10000,"Plastic Tubing", 1, R.string.plasticTubingDescription, MainActivity.effect.sap,2.0f,0,0.0f));
+        _futureItems.put(1970, new StoreItem(15000,"Vacuum Tubing", 1, R.string.vacuumPumpDescription, MainActivity.effect.sap,1.5f,0,0.0f));
+        _futureItems.put(1970, new StoreItem(10000,"Preheater", 3, R.string.preheatersDescription, MainActivity.effect.emmisions,1.5f,0,-1.0f));
+        _futureItems.put(1990, new StoreItem(10000,"Super Charged Preheater", 1, R.string.superChargedPreheatersDescription, MainActivity.effect.sap,2.0f,0,-2.0f));
 
 
 

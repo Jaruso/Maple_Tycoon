@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         Upkeep.setText("The cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("After expenses, you earned $" + String.format("%.2f", totalMoney) + " from maple syrup this year.");
+        totalText.setText("After expenses, you earned $" + String.format("%.2f", (totalMoney-totalUpkeep)) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));

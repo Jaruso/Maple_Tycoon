@@ -29,7 +29,7 @@ public class Store {
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
         _availableItems.get(0).buy();
-        _availableItems.add(1, new StoreItem(50, "Sugar House", -1, R.string.sugarHouseDescription, MainActivity.effect.sap, .0f,150,0.0f));
+        _availableItems.add(1, new StoreItem(1500, "Sugar House", -1, R.string.sugarHouseDescription, MainActivity.effect.sap, .0f,150,0.0f));
         _availableItems.get(1).buy();
         _availableItems.add(2, new StoreItem(400, "Vat", 3, R.string.vatDescription, MainActivity.effect.syrup, .1f,0,0.0f));
         _availableItems.add(3, new StoreItem(100, "Carriage", 5, R.string.carriageDescription, MainActivity.effect.money, .5f,150,0.0f));

@@ -1,7 +1,5 @@
 package com.example.joe.mapletycoon;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -15,30 +13,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import static com.example.joe.mapletycoon.R.*;
 
@@ -49,16 +36,13 @@ public class MainActivity extends AppCompatActivity {
     public int currentYear = 1900;
     public int maxTrees = 400;
     public Store mStore = new Store(this);
-    public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
-    public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
-    public DescriptionClickListener descClickListener = new DescriptionClickListener(new WeakReference<Store>(mStore), this);
+    public ShopItemClickListener shopClickListener = new ShopItemClickListener(new WeakReference<Store>(mStore), this);
     public HashMap<Integer, Integer> climateScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
-
     }
 
     @Override
@@ -127,53 +111,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateStoreControls() {
         ArrayList<StoreItem> items = mStore.getAvailabelItems();
-
+        ListView listView = (ListView) findViewById(id.listView);
+        ArrayList<String> list = new ArrayList<String>();
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(shopClickListener);
         for (int i = 0; i < items.size(); i++) {
-            GridLayout layout = (GridLayout) findViewById(id.gridLayout);
 
-            TextView name = new TextView(this);
-            name.setId(i + 100);
-            name.setTextSize(12);
-            name.setGravity(Gravity.CENTER);
-            name.setTypeface(Typeface.MONOSPACE);
-            name.setText(items.get(i).getName());
-            layout.addView(name);
+            adapter.add(items.get(i).getName() + " - $" + Integer.toString(items.get(i).getPrice()));
 
-            TextView amount = new TextView(this);
-            amount.setText("(" + Integer.toString(mStore.getItemAmount(i)) + ")");
-            amount.setTextSize(12);
-            amount.setTypeface(Typeface.MONOSPACE);
-            amount.setId(i + 400);
-            layout.addView(amount);
 
-            Button buy = new Button(this);
-            buy.setText("Buy");
-            buy.setId(i + 200);
-            buy.setOnClickListener(buyClickListener);
-            buy.setBackgroundResource(drawable.buttonstyle);
-            buy.setTextSize(12);
-            buy.setTextColor(Color.parseColor("#FFFFFF"));
-            layout.addView(buy);
-
-            Button sell = new Button(this);
-            sell.setText("Sell");
-            sell.setId(i + 300);
-            sell.setOnClickListener(sellClickListener);
-            sell.setBackgroundResource(drawable.buttonstyle);
-            sell.setTextColor(Color.parseColor("#FFFFFF"));
-            sell.setTextSize(12);
-            layout.addView(sell);
-
-            Button description = new Button(this);
-            description.setText("?");
-            description.setId(i + 500);
-            description.setBackgroundResource(drawable.buttonstyle);
-            description.setTextColor(Color.parseColor("#FFFFFF"));
-            description.setTextSize(12);
-            description.setOnClickListener(descClickListener);
-            layout.addView(description);
-
-            ((TextView) findViewById(id.moneyAmount)).setText(String.format("$ %.2f", mStore.getMoney()));
         }
     }
 

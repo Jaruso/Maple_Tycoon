@@ -43,28 +43,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/moneyAmount" />
+
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:id="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        android:layout_marginRight="1dp">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/gridLayout"
-            android:columnCount="5"
-            android:rowCount="1"
-            android:layout_below="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"></GridLayout>
-    </ScrollView>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_above="@+id/backButton"
+        android:layout_below="@+id/linearLayout" />
 
     <Button
         android:layout_width="wrap_content"
@@ -74,9 +61,9 @@
         android:onClick="storeExitClick"
         android:background="@drawable/buttonstyle"
         android:textColor="#FFFFFF"
-        android:layout_below="@+id/scrollView"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginRight="1dp" />
+        android:layout_marginBottom="46dp" />
 
 </RelativeLayout>

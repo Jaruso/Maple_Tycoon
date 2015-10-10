@@ -22,7 +22,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -39,11 +44,14 @@ public class MainActivity extends AppCompatActivity {
     public ShopItemClickListener shopClickListener = new ShopItemClickListener(new WeakReference<Store>(mStore), this);
     public HashMap<Integer, Integer> climateScores;
     public float climateLosses = 0;
+    public Typeface gloria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.start_activity);
+//        gloria = Typeface.createFromAsset(getAssets(), "fonts/GloriaHallelujah.ttf");
+
     }
 
     @Override
@@ -204,8 +212,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void createSummary(float totalMoney, float totalSap, float totalSyrup, float totalUpkeep) {
 
-        float avgTemp = 0.0f;     //
 
+        double avgTemp = 0.0f;     //
+        int goodDays = 0;
+        int badDays = 0;
+
+        WeatherMan wm = new WeatherMan(getApplicationContext());
+        try {
+            Season endSeason = wm.computeScore(currentYear);
+            avgTemp = endSeason.avgTemp;
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            avgTemp = (avgTemp * 1.8) + 32;
+            goodDays = endSeason.dayQuality[2];
+            badDays = endSeason.dayQuality[0];
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Random rand = new Random();
 
         int randomNum = rand.nextInt(28 + 1);
@@ -226,11 +250,19 @@ public class MainActivity extends AppCompatActivity {
         TextView Upkeep = (TextView) findViewById(id.totalUpkeep);
         Upkeep.setText("\tThe cost to maintain your company is $" + String.format("%.2f", totalUpkeep) + ".");
 
-        TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText("\tAfter expenses, you earned $" + String.format("%.2f", (totalMoney - totalUpkeep)) + " from maple syrup this year.");
 
+        TextView totalText = (TextView) findViewById(id.moneymade);
+        totalText.setText("After expenses, you earned $" + String.format("%.2f", (totalMoney - totalUpkeep)) + " from maple syrup this year.");
+
+        NumberFormat tnum = new DecimalFormat("#.00");
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
-        avgTempText.setText(Float.toString(avgTemp));
+        avgTempText.setText("Average temperature during the season was " + tnum.format(avgTemp) + " (F)");
+
+        TextView goodDayText = (TextView) findViewById(id.gooddays);
+        goodDayText.setText("# of good flow days: " + goodDays);
+
+        TextView badDayText = (TextView) findViewById(id.baddays);
+        badDayText.setText("# of bad flow days: " + badDays);
 
         TextView factText = (TextView) findViewById(id.syrupfact);
         factText.setText("\t\t\tRandom Maple Syrup Fact ! \n\n \t" + fact);
@@ -245,11 +277,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runSimulation() {
-        //  climateScores.get(currentYear);
+        double climateMod = 1;
+        WeatherMan wm = new WeatherMan(getApplicationContext());
 
+        try {
+            climateMod = wm.computeScore(currentYear).climateMod;
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        climateMod = climateMod / 100;
         float sapPerTree = 10;
         int treePerHouse = 80;
         float totalSap = ((sapPerTree * treePerHouse) / 5)*mStore.getHouses();
+        totalSap = (float)climateMod * totalSap;
         float totalSyrup = totalSap / 45;
         float totalMoney = totalSyrup * 30;
         float totalUpkeep = 0;
@@ -316,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void gameEnd(){
 
-        if(mStore.getMoney()<0){
+        if (mStore.getMoney()<0){
             setContentView(layout.end_activity);
             TextView emissions = (TextView) findViewById(id.climate);
             TextView money = (TextView) findViewById(id.earned);
@@ -324,8 +367,7 @@ public class MainActivity extends AppCompatActivity {
             endTitle.setText("You have gone bankrupt!");
             emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
             money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
-        }
-        else if(currentYear==2015){
+        } else if (currentYear ==2015){
             setContentView(layout.end_activity);
             TextView emissions = (TextView) findViewById(id.climate);
             TextView money = (TextView) findViewById(id.earned);

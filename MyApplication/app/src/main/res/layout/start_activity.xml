@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/title"
-        android:typeface="monospace"
         android:id="@+id/title"
         android:layout_gravity="center_horizontal"
         android:height="90dp"
-        android:gravity="center|bottom" />
+        android:gravity="center|bottom"
+        android:typeface="monospace" />
 
     <TextView
         android:layout_width="match_parent"

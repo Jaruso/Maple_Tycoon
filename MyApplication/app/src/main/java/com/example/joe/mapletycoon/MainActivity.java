@@ -2,6 +2,7 @@ package com.example.joe.mapletycoon;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.joe.mapletycoon.R.*;
@@ -216,24 +218,35 @@ public class MainActivity extends AppCompatActivity {
 
     public void createSummary(float totalMoney, float totalSap, float totalSyrup){
 
-
         float avgTemp = 0.0f;     //
-        String fact = "";         //
+
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt((28 - 0) + 1) + 0;
+
+        Resources res = getResources();
+        String[] facts = res.getStringArray(R.array.fact_array);
+
+        String fact = facts[randomNum];
+
+
+        TextView totalSapText = (TextView) findViewById(id.totalsap);
+        totalSapText.setText("This year you produced " + Float.toString(totalSap) + " gallons of sap.");
 
         TextView avgGalText = (TextView) findViewById(id.totalsap);
         avgGalText.setText(Float.toString(totalSap));
 
         TextView totalGalText = (TextView) findViewById(id.totalsyrup);
-        totalGalText.setText(Float.toString(totalSyrup));
+        totalGalText.setText("All that sap boiled down to " + Float.toString(totalSyrup) + "gallons of syrup.");
 
         TextView totalText = (TextView) findViewById(id.moneymade);
-        totalText.setText(Float.toString(totalMoney));
+        totalText.setText("After expenses, you earned $" + Float.toString(totalMoney) + " from maple syrup this year.");
 
         TextView avgTempText = (TextView) findViewById(id.avgtemp);
         avgTempText.setText(Float.toString(avgTemp));
 
         TextView factText = (TextView) findViewById(id.syrupfact);
-        factText.setText(fact);
+        factText.setText("      Random Maple Syrup Fact ! \n\n \t" + fact);
 
     }
 

@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
     public void storeExitClick(View view) {
         setContentView(R.layout.activity_main);
         updateResources();
+        setTitle();
     }
 
     public void TreeClick(View view) {
@@ -336,16 +337,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameEnd(){
-        setContentView(layout.end_activity);
-        TextView emissions = (TextView) findViewById(id.climate);
-        TextView money = (TextView) findViewById(id.earned);
-        TextView endTitle=(TextView) findViewById(id.endTitle);
+
         if(mStore.getMoney()<0){
+            setContentView(layout.end_activity);
+            TextView emissions = (TextView) findViewById(id.climate);
+            TextView money = (TextView) findViewById(id.earned);
+            TextView endTitle=(TextView) findViewById(id.endTitle);
             endTitle.setText("You have gone backrupt!");
             emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
             money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");
         }
         else if(currentYear==2015){
+            setContentView(layout.end_activity);
+            TextView emissions = (TextView) findViewById(id.climate);
+            TextView money = (TextView) findViewById(id.earned);
+            TextView endTitle=(TextView) findViewById(id.endTitle);
             endTitle.setText("You have reached the current year!");
             emissions.setText("You have added " + String.format("%.2f", totalCarbon) + " pounds of carbon to the atmosphere.");
             money.setText("You ended with $" + String.format("%.2f", mStore.getMoney()) + ". ");

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public String mUsername = "";
     public float totalCarbon = 0.0f;
     public int currentYear = 1900;
+    public int maxTrees = 400;
     public Store mStore = new Store(this);
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
     public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
@@ -298,9 +299,9 @@ public class MainActivity extends AppCompatActivity {
         //  climateScores.get(currentYear);
 
         float sapPerTree = 10;
-        int treePerHouse = 100;
+        int treePerHouse = 80;
         float totalSap = ((sapPerTree * treePerHouse) / 5)*mStore.getHouses();
-        float totalSyrup = totalSap / 35;
+        float totalSyrup = totalSap / 45;
         float totalMoney = totalSyrup * 30;
         float totalUpkeep = 0;
         float carbonMade = 0.0f;

@@ -105,13 +105,14 @@ public class MainActivity extends AppCompatActivity {
     public void updateResources ()
     {
         float mMoney = mStore.getMoney();
+        int mWorker = mStore.getWorkers();
 
 
         TextView money = (TextView) findViewById(id.moneynum);
         money.setText(Float.toString(mMoney) );
 
-       // TextView worker = (TextView) findViewById(id.workernum);
-       /// worker.setText(mUsername + ", " + currentYear);
+        TextView worker = (TextView) findViewById(id.workernum);
+        worker.setText(mWorker);
 
        // TextView house = (TextView) findViewById(id.housenum);
        // house.setText(mUsername + ", " + currentYear);

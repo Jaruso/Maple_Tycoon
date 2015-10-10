@@ -160,7 +160,9 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(id.moneyAmount)).setText(Float.toString(mStore.getMoney()));
         generateStoreControls();
     }
-    public void storeExitClick(View view) {
+
+    public void storeExitClick(View view)
+    {
         updateResources();
         setContentView(R.layout.activity_main);
     }

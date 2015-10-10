@@ -37,6 +37,7 @@ import static com.example.joe.mapletycoon.R.*;
 public class MainActivity extends AppCompatActivity {
 
     public String mUsername = "";
+    public float totalCarbon = 0.0f;
     public int currentYear = 1800;
     public Store mStore = new Store();
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
@@ -318,6 +319,13 @@ public class MainActivity extends AppCompatActivity {
 
        }
 
+
+public void tallyCarbon(){
+
+
+
+
+}
 
 
 

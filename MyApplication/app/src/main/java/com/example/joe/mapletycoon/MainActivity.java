@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public Store mStore = new Store();
     public BuyClickListener buyClickListener = new BuyClickListener(new WeakReference<Store>(mStore), this);
     public SellClickListener sellClickListener = new SellClickListener(new WeakReference<Store>(mStore), this);
+    public DescriptionClickListener descClickListener = new DescriptionClickListener(new WeakReference<Store>(mStore), this);
     public HashMap<Integer, Integer> climateScores;
 
     @Override
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
             TextView name = new TextView(this);
             name.setId(i + 100);
-            name.setTextSize(14);
+            name.setTextSize(12);
             name.setGravity(Gravity.CENTER);
             name.setTypeface(Typeface.MONOSPACE);
             name.setText(items.get(i).getName());
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
             TextView amount = new TextView(this);
             amount.setText("(" + Integer.toString(mStore.getItemAmount(i)) + ")");
-            amount.setTextSize(14);
+            amount.setTextSize(12);
             amount.setGravity(Gravity.CENTER);
             amount.setTypeface(Typeface.MONOSPACE);
             amount.setId(i + 400);
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             description.setId(i + 500);
             description.setBackgroundResource(drawable.buttonstyle);
             description.setTextColor(Color.parseColor("#FFFFFF"));
+            description.setOnClickListener(descClickListener);
             layout.addView(description);
 
 
@@ -312,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
            View view=inflator.inflate(layout.summary_activity, null, false);
            view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
            Animation myAnim = view.getAnimation();
-           myAnim.setDuration(5000);
+           myAnim.setDuration(3000);
            view.setAnimation(myAnim);
            setContentView(view);
 

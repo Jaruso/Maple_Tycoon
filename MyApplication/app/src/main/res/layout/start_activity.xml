@@ -55,6 +55,8 @@
         android:layout_marginTop="80dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
-        android:onClick="startClick"/>
+        android:onClick="startClick"
+        android:background="@drawable/buttonstyle"
+        android:textColor="#FFFFFF"/>
 
 </RelativeLayout>

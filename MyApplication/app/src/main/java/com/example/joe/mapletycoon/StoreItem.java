@@ -12,7 +12,8 @@ public class StoreItem {
     private int mMaxAmount; //-1 for infinite
     private MainActivity.effect mMyEffect;
     private float mMultiplyer;
-    public StoreItem(int price, String name, int maxAmount, int descriptionId, MainActivity.effect myEffect, float multiplyer)
+    private float mUpkeep;
+    public StoreItem(int price, String name, int maxAmount, int descriptionId, MainActivity.effect myEffect, float multiplyer, float upkeep)
     {
         mPrice = price;
         mName = name;
@@ -21,6 +22,7 @@ public class StoreItem {
         mDescriptionId = descriptionId;
         mMyEffect=myEffect;
         mMultiplyer=multiplyer;
+        mUpkeep=upkeep;
     }
 
     public int getPrice()
@@ -65,6 +67,8 @@ public class StoreItem {
     }
 
     public float getMultiplyer(){ return mMultiplyer;}
+
+    public float getUpkeep(){ return mUpkeep;};
 
     public MainActivity.effect getEffect (){ return mMyEffect;}
 }

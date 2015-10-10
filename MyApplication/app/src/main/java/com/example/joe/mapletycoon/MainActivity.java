@@ -184,13 +184,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void TreeClick(View view){
 
-        Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.fadein);
+        Animation animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fadein);
         Animation animMove=AnimationUtils.loadAnimation(getApplicationContext(), anim.move);
-        ImageView tap=(ImageView) findViewById(id.bucket);
-        tap.setVisibility(View.VISIBLE);
-        tap.startAnimation(animFadein);
-        tap.startAnimation(animMove);
+        Animation animMoveTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.movetap);
+        Animation animFadeinTap=AnimationUtils.loadAnimation(getApplicationContext(), anim.fadeintap);
+        ImageView bucket=(ImageView) findViewById(id.bucket);
+        ImageView tap=(ImageView) findViewById(id.tap);
+        tap.startAnimation(animFadeinTap);
+        tap.startAnimation(animMoveTap);
+        bucket.startAnimation(animFadein);
+        bucket.startAnimation(animMove);
 
 
     }

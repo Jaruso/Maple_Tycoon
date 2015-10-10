@@ -128,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bucket"
-        android:src="@drawable/bucket"
+        android:src="@drawable/bucket_no_tap"
         android:adjustViewBounds="true"
         android:maxWidth="50dp"
         android:maxHeight="50dp"
@@ -136,7 +136,7 @@
         android:layout_above="@+id/resourcetitle"
         android:layout_alignRight="@+id/resourcetitle"
         android:layout_alignEnd="@+id/resourcetitle"
-        android:layout_marginBottom="34dp" />
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -147,5 +147,19 @@
         android:layout_above="@+id/storeButton"
         android:layout_alignRight="@+id/resourcetitle"
         android:layout_alignEnd="@+id/resourcetitle" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tap"
+        android:src="@drawable/tap"
+        android:adjustViewBounds="true"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:visibility="invisible"
+        android:layout_above="@+id/resourcetitle"
+        android:layout_alignRight="@+id/resourcetitle"
+        android:layout_alignEnd="@+id/resourcetitle"
+        android:layout_marginBottom="45dp"/>
 
 </RelativeLayout>

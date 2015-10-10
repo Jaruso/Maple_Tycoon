@@ -3,10 +3,10 @@
 
     <string name="hello_world">Hello world!</string>
 
-    <string name="start">Begin Sugarin!</string>
+    <string name="start">Begin Sugarin\'!</string>
     <string name="title">Maple Tycoon 2015</string>
     <string name="resourcetitle">Current Resources</string>
-    <string name="askName">What is your Sugarhouse name?</string>
+    <string name="askName">What is your Sugarhouse\'s name?</string>
     <string name="mfont">monospace</string>
 
     <string name="workerDescription">Workers harvest sap and refine it into syrup. They are paid $100 every season and get an additional $100 sign-on bonus.</string>
@@ -16,4 +16,37 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_store">StoreActivity</string>
+
+    <string-array name="fact_array">
+        <item>It takes 30\-50 gallons of sap to make one gallon of maple syrup</item>
+        <item>It takes one gallon of maple syrup to produce eight pounds of maple candy or sugar</item>
+        <item>A gallon of maple syrup weighs 11 pounds</item>
+        <item>The sugar content of sap averages 2.5 percent; sugar content of maple syrup is at least 66 percent or more</item>
+        <item>Usually a maple tree is at least 30 years old and 12 inches in diameter before it is tapped</item>
+        <item>As the tree increases in diameter, more taps can be added - up to a maximum of four taps</item>
+        <item>Tapping does no permanent damage and only 10 percent of the sap is collected each year. Many maple trees have been tapped for 150 or more years.</item>
+        <item>Each tap will yield an average of 10 gallons of sap per season, producing about one quart of syrup.</item>
+        <item>The maple season may last eight to 10 weeks, but sap flow is heaviest for about 10\-20 days in the early spring</item>
+        <item>Averaged out over the entire population of the United States, each of us only consumes 3 ounces of maple syrup each year.</item>
+        <item>Vermont is the leading producer of maple syrup, producing 40% nationally, that’s 1.3 million gallons a year</item>
+        <item>Maple syrup is one of the lowest calorie natural sweeteners at 54 calories per tablespoon</item>
+        <item>It takes about 5 1/5 days for the average tree to produce about 40 gallons of sap</item>
+        <item>Maple Syrup is organic and gluten free!</item>
+        <item>Maple syrup is great on pancakes!</item>
+        <item>There are 5 grades for maple syrup. In Vermont, from best to worst they are categorized: Fancy, A Medium Amber, A Dark Amber, C, and Commercial.</item>
+        <item>The North American squirrel also taps during sugaring season by gouging the bark of young maple trees with their two front teeth and drinking the sap that flows.</item>
+        <item>Before returning maple syrup to the refrigerator, rinse the cap in hot water and wipe the top of the jug so the cap will be easier to remove the next time.</item>
+        <item>After opening, maple syrup will last in the fridge for a year or more.</item>
+        <item>Many big producers blend the better syrup with the worse to reduce labor and lower cost; this is the jug wine of the syrup world.</item>
+        <item>Legend has it that the first maple syrup maker was an Iroquois woman, the wife of Chief Woksis. One late winter morning, the story goes, the chief headed out on one of his hunts, but not before yanking his tomahawk from the tree where he\'d thrown it the night before. On this particular day the weather turned quite warm, causing the tree\'s sap to run and fill a container standing near the trunk. The woman spied the vessel and, thinking it was plain water, cooked their evening meal in it. The boiling that ensued turned the sap to syrup, flavoring the chief\'s meal as never before.</item>
+        <item>Real maple syrup is a treasure, made more interesting by the fact that it\'s only possible to produce it in the northern part of North America.</item>
+        <item>In April, when the buds on the maple tree begin to grow, the sap tapping is discontinued because the sap becomes unsavory.</item>
+        <item>Sap becomes maple syrup when it reaches 7 and a half degrees above the boiling point of water. At that point, it is 67% sugar.</item>
+        <item>A high concentration of sugar maples is called a sugarbush.</item>
+        <item>The sap “runs” when the temperatures fall below freezing at night and then thaws during the day.</item>
+        <item>Some sugarmakers still use buckets, but new, plastic tubing has allowed sugarmakers to tap trees that were once difficult to visit each day to gather sap during the season.</item>
+        <item>A new tap hole must be made each year.</item>
+        <item>If a sap run is long, a sugarmaker will work through the night and until morning making maple syrup. It’s not unusual for the sap to run 3 days or longer.</item>
+    \</string-array>
+
 </resources>

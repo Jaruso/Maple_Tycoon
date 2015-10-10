@@ -16,7 +16,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/avgsyrup"
         android:layout_marginTop="60dp"
         android:layout_below="@+id/summarytitle"
@@ -27,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="New Text"
         android:id="@+id/totalsyrup"
         android:layout_below="@+id/avgsyrup"
 />
@@ -36,7 +34,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="New Text"
         android:id="@+id/moneymade"
         android:layout_below="@+id/totalsyrup"
         />
@@ -45,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="New Text"
         android:id="@+id/avgtemp"
         android:layout_below="@+id/moneymade"
         />
@@ -54,10 +50,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="New Text"
         android:id="@+id/syrupfact"
         android:layout_below="@+id/avgtemp"
         />
+
 
     <Button
         android:layout_width="wrap_content"

@@ -187,4 +187,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void createSummary(){
+
+        float avgGallons = 0.0f;  //
+        int totalGallons = 0;     //
+        float totalMade = 0.0f;   //
+        float avgTemp = 0.0f;     //
+        String fact = "";         //
+
+
+        TextView avgGalText = (TextView) findViewById(id.avgsyrup);
+        avgGalText.setText(Float.toString(avgGallons));
+
+        TextView totalGalText = (TextView) findViewById(id.totalsyrup);
+        totalGalText.setText(Float.toString(totalGallons));
+
+        TextView totalText = (TextView) findViewById(id.moneymade);
+        totalText.setText(Float.toString(totalMade));
+
+        TextView avgTempText = (TextView) findViewById(id.avgtemp);
+        avgTempText.setText(Float.toString(avgTemp));
+
+        TextView factText = (TextView) findViewById(id.syrupfact);
+        factText.setText(fact);
+
+    }
+
+
+
 }
